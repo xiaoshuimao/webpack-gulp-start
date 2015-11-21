@@ -1,0 +1,135 @@
+@import "../css/reset";
+html,
+body {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+input,
+select {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    outline: 0;
+    -webkit-appearance: none;
+}
+.ui__btn {
+    background-color: #e3324f;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    display: inline-block;
+}
+.zx__icon {
+    display: inline-block;
+    background: url("1.webp") no-repeat;
+    background-size: 170px 48px;
+    vertical-align: top;
+}
+.zx__icon-tit1 {
+    width: 40px;
+    height: 40px;
+    background-position: -24px -4px;
+    margin-right: 4px;
+}
+.zx__title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+.zx__form {
+    background-color: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #d4d4d4;
+}
+.zx__form__item {
+    line-height: 42px;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: #2b2b2b;
+    position: relative;
+}
+.zx__form-item__tit {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    text-align: left;
+    color: #828282;
+}
+.zx__form-item__con {
+    width: 100%;
+    padding-left: 75px;
+}
+.zx__form-item__con input,
+.zx__form-item__con select {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 1px solid #b5b5b5;
+    font-size: 1.4rem;
+    background: none;
+    border-radius: 0;
+}
+.zx__btn-vcode {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    width: 115px;
+}
+.zx__form__tip {
+    padding: 20px 0;
+    line-height: 1.4;
+}
+.zx__form-tip__t {
+    color: #0387dc;
+    padding: 0 2px;
+}
+.zx__icon-warm {
+    width: 14px;
+    height: 14px;
+    background-position: -3px -18px;
+    vertical-align: middle;
+    position: relative;
+    right: 2px;
+}
+.zx__btm__btns {
+    margin: 28px 0;
+    text-align: center;
+}
+.zx__btn--page1 {
+    width: 90%;
+}
+.zx__icon-tit2 {
+    width: 44px;
+    height: 41px;
+    background-position: -124px -5px;
+    margin-right: 4px;
+}
+.zx__page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: #f0eff7;
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    transition: .6s all ease;
+}
+.zx__page--cur {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+}
+.zx__btn--page2-1,
+.zx__btn--page2-2 {
+    width: 40%;
+    margin: 0 3%;
+}

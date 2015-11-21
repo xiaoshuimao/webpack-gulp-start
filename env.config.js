@@ -1,0 +1,40 @@
+module.exports =  {
+    "ENV": {
+        "LOC":"LOC",
+        "DEV":"DEV",
+        "TEST":"TEST",
+        "PRO":"PRO"
+    },
+    "LOC":{
+        "API":{
+            "CBB":"http://172.26.153.45/cbbweb",
+            "LANYOU":"http://172.26.153.45/lanyou"
+        },
+        "CONTEXT_PATH":"http://127.0.0.1:3000",
+        "ASSERT_PATH":"http://127.0.0.1:3333"
+    },
+    "DEV":{
+        "API":{
+            "CBB":"http://172.26.153.45/cbbweb",
+            "LANYOU":"http://172.26.153.45/lanyou"
+        },
+        "CONTEXT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic",
+        "ASSERT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic"
+    },
+    "TEST":{
+        "API":{
+            "CBB":"http://14.23.175.36/cbbweb",
+            "LANYOU":"http://172.26.152.176/lanyou"
+        },
+        "CONTEXT_PATH":"http://127.0.0.1:3000",
+        "ASSERT_PATH":"http://127.0.0.1:3333"
+    },
+    "PRO":{
+        "API":{
+            "CBB":"http://fun.chebaba.com/api",
+            "LANYOU":"http://fun.chebaba.com/lanyou"
+        },
+        "CONTEXT_PATH":"http://mfun.chebaba.com",
+        "ASSERT_PATH":"http://mfun.chebaba.com"
+    }
+};
