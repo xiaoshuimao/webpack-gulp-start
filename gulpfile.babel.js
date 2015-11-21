@@ -31,7 +31,7 @@ let CONF = {
   }
 };
 
-//处理 图片 和 html
+/* ------------ 处理图片和 html ------------ */
 gulp.task('handle', ['handleHtml', 'handleImg']);
 gulp.task('handleImg', function() {
   return gulp.src(filePath.img)
@@ -47,13 +47,13 @@ gulp.task('handleHtml', function() {
     .pipe(changed(filePath.tmp)).pipe(gulp.dest(filePath.tmp)).pipe(gulp.dest(filePath.build));
 });
 
-/ * ------------RELOAD------------ * /
+/* ------------ RELOAD ------------ */
 gulp.task('reload', ['handle'], () => {
   browserSync.reload();
 });
 
-/ * ------------SERVE------------ * /
-gulp.task('serve', ['webpack-dev-server', 'handle'], function() {
+/* ------------ SERVER ------------ */
+gulp.task('server', ['webpack-dev-server', 'handle'], function() {
   browserSync({
     server: {
       baseDir: "./topic",
@@ -66,7 +66,7 @@ gulp.task('serve', ['webpack-dev-server', 'handle'], function() {
   });
 });
 
-/* ------------ SERVE ------------  */
+/* ------------ WEBPACK DEV SERVER ------------  */
 gulp.task('webpack-dev-server', function() {
   var webpackConfig = getWebpackConfig(process.env.ENV);
   return new WebpackDevServer(webpack(getWebpackConfig(process.env.ENV)), {
@@ -80,7 +80,7 @@ gulp.task('webpack-dev-server', function() {
   });
 });
 
-/* -----------webpack build--------------- */
+/* ----------- webpack build --------------- */
 gulp.task('webpack:build', function(callback) {
   // Modify some webpack config options
   var myConfig = Object.create(getWebpackConfig(process.env.ENV));
@@ -103,7 +103,7 @@ gulp.task('webpack:build', function(callback) {
   });
 });
 
-// Clean
+/* ----------- CLEAN --------------- */
 gulp.task('clean', function() {
   return gulp.src([filePath.tmp].concat(filePath.build), {
     read: false
