@@ -1,8 +1,8 @@
 require('./select.less');
-
+var $ = require('jq');
 (function($) {
   $.fn.carSelect = function(options) {
-    el = $('body');
+    var el = $('body');
     var Default = {
       'url': '',
       'param': {},
@@ -135,4 +135,4 @@ require('./select.less');
     }
 
   }
-})(jQuery);
+})($);

@@ -53,14 +53,14 @@ gulp.task('reload', ['handle'], () => {
 });
 
 /* ------------ SERVER ------------ */
-gulp.task('server', ['webpack-dev-server', 'handle'], function() {
+gulp.task('serve', ['webpack-dev-server', 'handle'], function() {
   browserSync({
     server: {
       baseDir: "./topic",
       directory: true
     }
   });
-  var _tmpArr = [].concat(filePath.page, filePath.css, filePath.js);
+  var _tmpArr = [].concat(filePath.page, filePath.css, filePath.js, filePath.img);
   gulp.watch(_tmpArr).on('change', function() {
     gulp.start('reload');
   });
@@ -70,7 +70,7 @@ gulp.task('server', ['webpack-dev-server', 'handle'], function() {
 gulp.task('webpack-dev-server', function() {
   var webpackConfig = getWebpackConfig(process.env.ENV);
   return new WebpackDevServer(webpack(getWebpackConfig(process.env.ENV)), {
-    publicPath: " / ",
+    publicPath: "/",
     stats: webpackConfig.devServer.stats
   }).listen(3333, 'localhost', function(err) {
     if (err) {
@@ -113,10 +113,10 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['runLoc']);
 
-gulp.task('runLoc', ['loc', 'server']);
-gulp.task('runDev', ['dev', 'server']);
-gulp.task('runTest', ['test', 'server']);
-gulp.task('run', ['pro', 'server']);
+gulp.task('runLoc', ['loc', 'serve']);
+gulp.task('runDev', ['dev', 'serve']);
+gulp.task('runTest', ['test', 'serve']);
+gulp.task('run', ['pro', 'serve']);
 
 gulp.task('build', ['loc', 'handle', 'webpack:build']);
 gulp.task('buildDev', ['dev', 'handle', 'webpack:build']);

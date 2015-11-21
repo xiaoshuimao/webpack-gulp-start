@@ -26,7 +26,7 @@ module.exports = function(RUN_ENV) {
       test: /\.css$/,
       loader: 'style!css!autoprefixer-loader'
     }, {
-      test: /\.less/,
+      test: /\.less$/,
       loader: 'style!css!autoprefixer-loader!less-loader'
     }, {
       test: /\.html$/,
@@ -58,7 +58,7 @@ module.exports = function(RUN_ENV) {
       "zepto": "js/3rd/zepto.min.js",
       "webpjs": "js/3rd/webpjs.js"
     },
-    extensions: ['', '.js', '.css', '.png', '.webp', '.jpg']
+    extensions: ['', '.js', '.less', '.css', '.gif', '.png', '.webp', '.jpg']
   };
   /* devServer */
   config.devServer = {
@@ -77,10 +77,13 @@ function getApiConfig(RUN_ENV) {
 }
 
 function getEntry() {
+  console.log("getEntry")
   var filesObj = {};
   var files = glob.sync("src/**/*.js", {
     ignore: ["src/js/lib/*.js", "src/js/3rd/*.js"]
   });
+  console.log('1')
+  console.log(files)
   files.forEach(function(item) {
     var idx = item.lastIndexOf("/");
     if (idx > -1) {

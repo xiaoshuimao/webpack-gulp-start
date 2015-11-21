@@ -1,5 +1,5 @@
 require('./zx.less');
-require('jq');
+var $ = require('jq');
 require('site')
 require('select');
 
@@ -9,8 +9,7 @@ $(function() {
     $('.zx__page').removeClass('zx__page--cur').eq(i).addClass('zx__page--cur');
   }
 
-  / /
-  获取车型
+  //获取车型
   $('#product_id').carSelect({
     url: '/oneyuan.htm?action=loadAllCarType',
     title: ['请选择品牌', '请选择车系', '请选择车型'],
