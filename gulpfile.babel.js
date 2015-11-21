@@ -113,10 +113,10 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['runLoc']);
 
-gulp.task('runLoc', ['loc', 'serve']);
-gulp.task('runDev', ['dev', 'serve']);
-gulp.task('runTest', ['test', 'serve']);
-gulp.task('run', ['pro', 'serve']);
+gulp.task('runLoc', ['loc', 'server']);
+gulp.task('runDev', ['dev', 'server']);
+gulp.task('runTest', ['test', 'server']);
+gulp.task('run', ['pro', 'server']);
 
 gulp.task('build', ['loc', 'handle', 'webpack:build']);
 gulp.task('buildDev', ['dev', 'handle', 'webpack:build']);
