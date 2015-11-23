@@ -3,7 +3,6 @@ var glob = require("glob");
 var fs = require("fs");
 var webpack = require('webpack');
 var ENV_CONFIG = require('./env.config.js');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 var srcDir = path.join(__dirname, "src");
 var excludeFromStats = [
@@ -55,7 +54,7 @@ module.exports = function(RUN_ENV) {
       "jq": "js/3rd/jquery-2.1.4.min.js",
       "zepto": "js/3rd/zepto.min.js"
     },
-    extensions: ['', '.js', '.less', '.css', '.gif', '.png', '.webp', '.jpg']
+    extensions: ['', '.js', '.less', '.css', '.gif','.html', '.png', '.webp', '.jpg']
   };
   /* devServer */
   config.devServer = {

@@ -1,5 +1,5 @@
 {
-  "name": "E4S Wap",
+  "name": "E4S",
   "version": "1.0.0",
   "description": "E4S Wap Topics Project",
   "main": "index.js",
@@ -30,7 +30,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-util": "^3.0.7",
     "gulp-webp": "^2.3.0",
-    "html-webpack-plugin": "^1.6.2",
+    "html-loader": "^0.3.0",
     "imagemin-pngquant": "^4.2.0",
     "imagemin-webp": "^3.1.0",
     "jshint": "^2.8.0",
