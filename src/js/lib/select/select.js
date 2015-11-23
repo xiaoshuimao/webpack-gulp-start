@@ -1,5 +1,5 @@
 require('./select.less');
-var $ = require('jq');
+import $ from 'jq';
 (function($) {
   $.fn.carSelect = function(options) {
     var el = $('body');

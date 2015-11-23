@@ -8,3 +8,4 @@ topic
 *.iml
 *.log
 *.swp
+.vscode

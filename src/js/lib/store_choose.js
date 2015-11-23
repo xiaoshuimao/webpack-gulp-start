@@ -1,12 +1,12 @@
 /**
  * Created by zxh on 2015/10/26.
  */
+import $ from 'jq';
+(function ($) {
+  $.fn.storeSelect = function (options) {
 
-(function($) {
-  $.fn.storeSelect = function(options) {
-
-	var lng = 0;
-	var lat = 0;
+    var lng = 0;
+    var lat = 0;
     var basePath = 'http://m.chebaba.com';
     var myProvVar = '';
     var mycityVar = '';
@@ -18,28 +18,28 @@
       'placeUrl': '',
       'storeUrl': '',
       'delStore': [],
-      'callback': function(eve) {}
+      'callback': function (eve) { }
     };
     options = $.extend(Default, options);
     $('body').append(options.html);
-    $(".store-sel__btn-close1").click(function() {
+    $(".store-sel__btn-close1").click(function () {
       $('.store-sel-wrap').hide();
       $('.popbox-choose').hide();
     });
     //点击弹出外层
-    $(this).click(function() {
+    $(this).click(function () {
       if ($('.store-sel-wrap').length > 0) {
         $('.store-sel-wrap').show();
         return;
-      } 
-      $('.store-sel-wrap').show(); 
+      }
+      $('.store-sel-wrap').show();
     });
     locationFunc();
     /*--------初始化当前位置--------*/
     function locationFunc() {
       var map = new cbbMap();
-      var sf = map.getCurPos(function(d) {
-        map.getAddressByPos(d, function(data) {
+      var sf = map.getCurPos(function (d) {
+        map.getAddressByPos(d, function (data) {
           //console.log(data);
           lng = d.lng;
           lat = d.lat;
@@ -58,20 +58,20 @@
     function InitProCity() {
       $('.popbox-choose').remove();
       var chooseBox = '<div class="popbox-choose" style="z-index:12"> <div class="popbox-choose__header"> <em></em><i></i> </div> <div class="popbox-choose__cnt"> <div class="popbox-choose__cnt__left"> <ul class="popbox-choose__cnt__left__prov" style="font-size:12px"> </ul> </div> <div class="popbox-choose__cnt__right" style="font-size:12px"> <ul class="popbox-choose__cnt__right__city"> </ul> </div> </div></div>';
-    //  $('.search-select').append(chooseBox);
+      //  $('.search-select').append(chooseBox);
       $('.store-sel-wrap').append(chooseBox);
 
-      $('.search-select__type-sel,.search-select__icon-down').click(function() {
+      $('.search-select__type-sel,.search-select__icon-down').click(function () {
         $('.popbox-choose').toggle();
       });
 
-      $('.popbox-choose').on('touchmove', function(e) {
+      $('.popbox-choose').on('touchmove', function (e) {
         e.stopPropagation();
       });
 
       var url = options.placeUrl;
-      $.post(url, function(data) {
-    	data = data.data;
+      $.post(url, function (data) {
+        data = data.data;
 
         InitPro(data.privince);
         defaultProv(myProvVar);
@@ -92,11 +92,11 @@
     /*---------初始化省份----*/
     function InitPro(data) {
       var proHtml = '';
-      $.each(data, function(index, itm) {
+      $.each(data, function (index, itm) {
         proHtml += '<li data-proname="' + itm.name + '" data-proid="' + itm.id + '"class="popbox-choose__cnt__left__prov__itm">' + itm.name + '</li>';
       });
       $('.popbox-choose__cnt__left__prov').append(proHtml);
-      $('.popbox-choose__cnt__left__prov').on('touchmove', function(e) {
+      $('.popbox-choose__cnt__left__prov').on('touchmove', function (e) {
         e.stopPropagation();
       });
     }
@@ -108,11 +108,11 @@
     /*---------初始化城市-----*/
     function InitCity(data) {
       var cityHtml = '';
-      $.each(data, function(index, itm) {
+      $.each(data, function (index, itm) {
         cityHtml += '<li data-cityname="' + itm.name + '" data-cityid="' + itm.id + '"class="popbox-choose__cnt__right__city__itm">' + itm.name + '</li>';
       });
       $(cityHtml).appendTo('.popbox-choose__cnt__right__city').trigger('create');
-      $('.popbox-choose__cnt__right__city').on('touchmove', function(e) {
+      $('.popbox-choose__cnt__right__city').on('touchmove', function (e) {
         e.stopPropagation();
       });
     }
@@ -126,7 +126,7 @@
     /*----单击事件初始化---*/
     function clickProvEventLoad(data) {
       //
-      $('.popbox-choose__cnt__left__prov__itm').click(function() {
+      $('.popbox-choose__cnt__left__prov__itm').click(function () {
         $('.popbox-choose__cnt__right__city__itm').remove();
         $('.popbox-choose__cnt__left__prov__itm').removeClass('f-bgwith');
         $(this).addClass('f-bgwith');
@@ -137,7 +137,7 @@
     }
 
     function clickCityeventLoad() {
-      $('.popbox-choose__cnt__right__city__itm').click(function() {
+      $('.popbox-choose__cnt__right__city__itm').click(function () {
         $('.popbox-choose__cnt__right__city__itm').removeClass('f-colorc61');
         $(this).addClass('f-colorc61');
         initStore($(this).data('cityid'));
@@ -151,7 +151,7 @@
 
     /*----初始化专营店信息---*/
     function initStore(cityId) {
-      if (typeof(cityId) == "undefined") {
+      if (typeof (cityId) == "undefined") {
         return;
       }
       var url = options.storeUrl;
@@ -163,12 +163,12 @@
         carBrandCode: "",
         xCoordinate: lng,
         yCoordinate: lat
-      }, function(data) {
+      }, function (data) {
         var data = data.send;
         //var data = options.data1.send;
         if (data.length > 0) {
           var html = '';
-          $.each(data, function(index, itm) {
+          $.each(data, function (index, itm) {
 
             var address = itm.store.address;
             if (address.indexOf('省')) {
@@ -193,14 +193,14 @@
             html += '</div></div>';
           });
           $('.store-sel').append(html);
-          $('.store-sel').on('touchmove', function(e) {
+          $('.store-sel').on('touchmove', function (e) {
             e.stopPropagation();
           });
-          $('.store-info-right').on('click','a',function(e){
-              e.stopPropagation();
-            });
+          $('.store-info-right').on('click', 'a', function (e) {
+            e.stopPropagation();
+          });
           if (options.delStore.length > 0) {
-            $.each(options.delStore, function(ind, item) {
+            $.each(options.delStore, function (ind, item) {
               $(' [data-storeid="' + item + '"]').hide();
             })
           }
@@ -214,16 +214,16 @@
     }
 
     function clickStore() {
-        $('.panel-block').not(":eq(0)").click(function() {
-          if (typeof(options.callback) == "function") {
-            options.callback($(this));
-            $('.store-sel-wrap').hide();
-          }
-        })
-      }
-      /*-----初始化地图事件----*/
+      $('.panel-block').not(":eq(0)").click(function () {
+        if (typeof (options.callback) == "function") {
+          options.callback($(this));
+          $('.store-sel-wrap').hide();
+        }
+      })
+    }
+    /*-----初始化地图事件----*/
     function InitMap() {
-      $('.panel-block').on('click', '.panel-block__map', function(e) {
+      $('.panel-block').on('click', '.panel-block__map', function (e) {
         e.stopPropagation(); //阻止事件冒泡
         var map = new cbbMap();
         initMapDom();
@@ -231,27 +231,27 @@
           lng: lng,
           lat: lat
         }, {
-          lng: $(this).data('xm'),
-          lat: $(this).data('ym')
-        })
+            lng: $(this).data('xm'),
+            lat: $(this).data('ym')
+          })
         $('#mapNav_wrap').show();
       });
     }
-    
-    function initMapDom(){
-    	if($('#mapNav_wrap').length>0){
-    		$('#mapNav_wrap').show();
-    	}else{
-    		html='<div id="mapNav_wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:11;">\
+
+    function initMapDom() {
+      if ($('#mapNav_wrap').length > 0) {
+        $('#mapNav_wrap').show();
+      } else {
+        html = '<div id="mapNav_wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:11;">\
     		         <a href="#" class="store-sel__btn-close--map store-sel__btn-close">X</a>\
     			     <div id="mapNav" class="amap-container" style="position: absolute;width: 100%;height:100%;" >\
     			     </div>\
     		      </div>';
-    		$('body').append(html);
-    		$('.store-sel__btn-close--map').click(function(){
-    			$(this).parent("#mapNav_wrap").hide()
-    		});
-    	}	
+        $('body').append(html);
+        $('.store-sel__btn-close--map').click(function () {
+          $(this).parent("#mapNav_wrap").hide()
+        });
+      }
     }
 
   }

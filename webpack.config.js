@@ -50,13 +50,10 @@ module.exports = function(RUN_ENV) {
   /* resolve */
   config.resolve = {
     root: [path.join(process.cwd(), "src"), path.join(process.cwd(), "node_modules")],
+    modulesDirectories: ['js/lib', 'js/3rd'],
     alias: {
       "jq": "js/3rd/jquery-2.1.4.min.js",
-      "validate": "js/3rd/validate.min.js",
-      "select": "js/lib/select/select.js",
-      "site": "js/lib/site.js",
-      "zepto": "js/3rd/zepto.min.js",
-      "webpjs": "js/3rd/webpjs.js"
+      "zepto": "js/3rd/zepto.min.js"
     },
     extensions: ['', '.js', '.less', '.css', '.gif', '.png', '.webp', '.jpg']
   };
@@ -77,13 +74,10 @@ function getApiConfig(RUN_ENV) {
 }
 
 function getEntry() {
-  console.log("getEntry")
   var filesObj = {};
   var files = glob.sync("src/**/*.js", {
     ignore: ["src/js/lib/*.js", "src/js/3rd/*.js"]
   });
-  console.log('1')
-  console.log(files)
   files.forEach(function(item) {
     var idx = item.lastIndexOf("/");
     if (idx > -1) {
