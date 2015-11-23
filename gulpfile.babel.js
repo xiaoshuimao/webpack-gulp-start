@@ -6,7 +6,7 @@ import changed from 'gulp-changed';
 import webp from 'gulp-webp';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
-
+import include from 'gulp-html-tag-include';
 
 var path = require('path');
 var ENV_CONFIG = require('./env.config.js');
@@ -36,11 +36,11 @@ let CONF = {
 
 /* ------------ 处理图片和 html ------------ */
 gulp.task('handle', ['handleHtml', 'handleImg', 'handleCImg']);
-gulp.task('handleImg', function() {
+gulp.task('handleImg', function () {
   return gulp.src(filePath.img)
     .pipe(changed(filePath.tmp))
     .pipe(gulp.dest(filePath.tmp))
-    //.pipe(webp())
+  //.pipe(webp())
     .pipe(imagemin({
       progressive: true,
       use: [pngquant()]
@@ -48,7 +48,7 @@ gulp.task('handleImg', function() {
     .pipe(gulp.dest(filePath.build));
 });
 /*webp 暂时无法解决ios兼容问题*/
-gulp.task('handleCImg', function() {
+gulp.task('handleCImg', function () {
   return gulp.src(filePath.cimg)
     .pipe(changed(filePath.tmp))
     .pipe(gulp.dest(filePath.tmp))
@@ -59,15 +59,14 @@ gulp.task('handleCImg', function() {
     .pipe(gulp.dest(filePath.src + '/cimg'));
 });
 
-gulp.task('handleHtml', function() {
+gulp.task('handleHtml', function () {
   return gulp.src(filePath.page)
     .pipe(replace(CONF.CONST.CONTEXT_PATH, ENV_CONFIG[process.env.ENV].CONTEXT_PATH))
     .pipe(replace(CONF.CONST.ASSERT_PATH, ENV_CONFIG[process.env.ENV].ASSERT_PATH))
-    /* webp 暂时无法解决ios兼容问题
-    .pipe(replace('.jpg', '.webp'))
-    .pipe(replace('.png', '.webp'))
-    */
-    .pipe(changed(filePath.tmp)).pipe(gulp.dest(filePath.tmp)).pipe(gulp.dest(filePath.build));
+    .pipe(changed(filePath.tmp))
+    // .pipe(include())
+    .pipe(gulp.dest(filePath.tmp))
+    .pipe(gulp.dest(filePath.build));
 });
 
 /* ------------ RELOAD ------------ */
@@ -76,7 +75,7 @@ gulp.task('reload', ['handle'], () => {
 });
 
 /* ------------ SERVER ------------ */
-gulp.task('serve', ['webpack-dev-server', 'handle'], function() {
+gulp.task('serve', ['webpack-dev-server', 'handle'], function () {
   browserSync({
     server: {
       baseDir: "./topic",
@@ -84,18 +83,18 @@ gulp.task('serve', ['webpack-dev-server', 'handle'], function() {
     }
   });
   var _tmpArr = [].concat(filePath.page, filePath.css, filePath.js, filePath.img);
-  gulp.watch(_tmpArr).on('change', function() {
+  gulp.watch(_tmpArr).on('change', function () {
     gulp.start('reload');
   });
 });
 
 /* ------------ WEBPACK DEV SERVER ------------  */
-gulp.task('webpack-dev-server', function() {
+gulp.task('webpack-dev-server', function () {
   var webpackConfig = getWebpackConfig(process.env.ENV);
   return new WebpackDevServer(webpack(getWebpackConfig(process.env.ENV)), {
     publicPath: "/",
     stats: webpackConfig.devServer.stats
-  }).listen(3333, 'localhost', function(err) {
+  }).listen(3333, 'localhost', function (err) {
     if (err) {
       throw new gutil.PluginError('webpack-dev-server', err);
     }
@@ -104,16 +103,26 @@ gulp.task('webpack-dev-server', function() {
 });
 
 /* ----------- webpack build --------------- */
-gulp.task('webpack:build', function(callback) {
+gulp.task('webpack:build', function (callback) {
   // Modify some webpack config options
   var myConfig = Object.create(getWebpackConfig(process.env.ENV));
 
   myConfig.plugins = myConfig.plugins.concat(
-    new webpack.optimize.DedupePlugin()
-  );
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.MinChunkSizePlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+    );
 
   // Run webpack
-  webpack(myConfig, function(err, stats) {
+  webpack(myConfig, function (err, stats) {
     if (err) {
       throw new gutil.PluginError('webpack:build', err);
     }
@@ -127,7 +136,7 @@ gulp.task('webpack:build', function(callback) {
 });
 
 /* ----------- CLEAN --------------- */
-gulp.task('clean', function() {
+gulp.task('clean', function () {
   return gulp.src([filePath.tmp].concat(filePath.build), {
     read: false
   }).pipe(clean());
@@ -146,22 +155,22 @@ gulp.task('buildDev', ['dev', 'handle', 'webpack:build']);
 gulp.task('buildTest', ['test', 'handle', 'webpack:build']);
 gulp.task('buildPro', ['pro', 'handle', 'webpack:build']);
 
-gulp.task('loc', function() {
+gulp.task('loc', function () {
   process.env.ENV = ENV_CONFIG.ENV.LOC;
   return true;
 });
 
-gulp.task('dev', function() {
+gulp.task('dev', function () {
   process.env.ENV = ENV_CONFIG.ENV.DEV;
   return true;
 });
 
-gulp.task('test', function() {
+gulp.task('test', function () {
   process.env.ENV = ENV_CONFIG.ENV.TEST;
   return true;
 });
 
-gulp.task('pro', function() {
+gulp.task('pro', function () {
   process.env.ENV = ENV_CONFIG.ENV.PRO;
   return true;
 });

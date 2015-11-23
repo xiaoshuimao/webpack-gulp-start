@@ -8,6 +8,7 @@ $(function(){
 
 	layer.open({
     type: 1,
-    content: require('./form'),
+    content: require('form'),
+		style:"width:90%"
    });
 })

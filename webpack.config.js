@@ -49,7 +49,7 @@ module.exports = function(RUN_ENV) {
   /* resolve */
   config.resolve = {
     root: [path.join(process.cwd(), "src"), path.join(process.cwd(), "node_modules")],
-    modulesDirectories: ['js/lib', 'js/3rd'],
+    modulesDirectories: ['js/lib', 'js/3rd', 'tpl'],
     alias: {
       "jq": "js/3rd/jquery-2.1.4.min.js",
       "zepto": "js/3rd/zepto.min.js"
