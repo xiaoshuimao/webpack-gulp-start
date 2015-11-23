@@ -54,3 +54,5 @@ var cbbMap = function() {
   }
   return this;
 }
+
+module.exports = cbbMap;

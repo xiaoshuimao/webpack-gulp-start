@@ -1,11 +1,15 @@
 <div class="form">
 	<div class="title">请填写您的个人信息</div>
 	<input class="ipt name" type="text" id="name" placeholder="请输入姓名">
-	<input class="ipt phone" type="text" id="phone" placeholder="请输入您的手机号码">
-	<div class=" select">
-		<i class="i_store"></i>
-		<a class="u-select__wrap__more" id="storeId" href="###">
-			请选择方便服务您的经销商<i class="i_arrow_r3"></i>
+	<input class="ipt phone" type="tel" id="phone" placeholder="请输入您的手机号码">
+	<div class="vcode_wrap">
+	<input class="ipt vcode" type="tel" id="vcode" placeholder="请输入验证码">
+	<a href="###" id="getVcode" class="btn">获取验证码</a>
+	</div>
+	<input class="ipt idcard" type="tel" id="idcard" placeholder="请输入您的身份证号">
+	<div class="ipt store">
+		<a class="choose" id="storeId" href="###">
+			请选择方便服务您的经销商
 		</a>
 	</div>
 	<a href="###" class="btn" id="yes">确定</a>

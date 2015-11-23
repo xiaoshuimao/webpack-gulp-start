@@ -7,7 +7,7 @@
 	}
 	.ipt{
 		display: block;
-		margin: 5px auto;
+		margin: 0 auto 10px;
 		width: 90%;
 		border: 1px solid @c_red;
 		background: 11px center no-repeat #fff;
@@ -15,5 +15,50 @@
 		text-indent: 30px;
 		height: 44px;
   	line-height: 44px;
+	}
+	.name{
+		background-image: url(../cimg/form_name.png);
+  	background-size: 11px 15px;
+	}
+	.phone{
+		background-image: url(../cimg/form_mobi.png);
+  	background-size: 11px 18px;
+	}
+	.vcode_wrap{
+		position: relative;
+		.btn{
+			background-color: @c_red;
+			padding: 6px 14px;
+			bottom:5px;
+			right:8%;
+			position: absolute;
+		}
+	}
+	.vcode{
+		background-image: url(../cimg/form_msg.png);
+  	background-size: 16px 12px;
+		background-position-x: 9px;
+	}
+	.store{
+		background-image: url(../cimg/form_store.png);
+  	background-size: 16px 15px;
+		.choose{
+			display: block;
+			background: url(../cimg/arrow_r3.png) no-repeat 94% center;
+			background-size:6px;
+		}
+	}
+	.idcard{
+		background-image: url(../cimg/form_card.png);
+  	background-size: 16px;
+	}
+	> .btn{
+		width: 78%;
+		background-color: @c_red; 
+		padding:10px 0;
+		margin: 20px auto 15px;
+		display: block;
+		border-radius: 5px;
+		font-size: 1.6rem;
 	}
 }

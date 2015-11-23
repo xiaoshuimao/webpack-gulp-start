@@ -2,6 +2,7 @@
  * Created by zxh on 2015/10/26.
  */
 import $ from 'jq';
+let cbbMap = require('map');
 (function ($) {
   $.fn.storeSelect = function (options) {
 
@@ -256,4 +257,4 @@ import $ from 'jq';
 
   }
 
-})(jQuery);
+})($);
