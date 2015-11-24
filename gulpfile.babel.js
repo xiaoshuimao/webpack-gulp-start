@@ -3,9 +3,6 @@ import babel from 'gulp-babel';
 import browserSync from 'browser-sync';
 import replace from 'gulp-replace';
 import changed from 'gulp-changed';
-import webp from 'gulp-webp';
-import imagemin from 'gulp-imagemin';
-import pngquant from 'imagemin-pngquant';
 import include from 'gulp-html-tag-include';
 
 var path = require('path');
@@ -24,8 +21,7 @@ filePath.page = ['./src/**/*.html'];
 filePath.js = ['./src/**/*.js'];
 filePath.css = ['./src/**/*.css', './src/**/*.less'];
 filePath.cimg = ['./src/cimg/*.jpg', './src/cimg/*.png'];
-filePath.img = ['./src/**/*.jpg', './src/**/*.png'];
-filePath.gif = ['./src/**/*.gif'];
+filePath.img = ['./src/**/*.jpg', './src/**/*.png', './src/**/*.gif'];
 
 filePath.build = './topic';
 
@@ -37,41 +33,21 @@ let CONF = {
 };
 
 /* ------------ 处理图片和 html ------------ */
-gulp.task('handle', ['handleHtml', 'handleImg', 'handleCImg', 'handleFuckingGif']);
+gulp.task('handle', ['handleHtml', 'handleImg']);
 gulp.task('handleImg', function () {
   return gulp.src(filePath.img)
     .pipe(changed(filePath.tmp))
     .pipe(gulp.dest(filePath.tmp))
-  //.pipe(webp())
-    .pipe(imagemin({
-      progressive: true,
-      use: [pngquant()]
-    }))
     .pipe(gulp.dest(filePath.build));
 });
-/*webp 暂时无法解决ios兼容问题*/
-gulp.task('handleCImg', function () {
-  return gulp.src(filePath.cimg)
-    .pipe(changed(filePath.tmp))
-    .pipe(gulp.dest(filePath.tmp))
-    .pipe(imagemin({
-      progressive: true,
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest(filePath.src + '/cimg'));
-});
-gulp.task('handleFuckingGif', function () {
-  return gulp.src(filePath.gif)
-    .pipe(changed(filePath.tmp))
-    .pipe(gulp.dest(filePath.tmp))
-    .pipe(gulp.dest(filePath.build));
-});
+
+
 gulp.task('handleHtml', function () {
   return gulp.src(filePath.page)
     .pipe(replace(CONF.CONST.CONTEXT_PATH, ENV_CONFIG[process.env.ENV].CONTEXT_PATH))
     .pipe(replace(CONF.CONST.ASSERT_PATH, ENV_CONFIG[process.env.ENV].ASSERT_PATH))
     .pipe(changed(filePath.tmp))
-  // .pipe(include())
+    //.pipe(include())
     .pipe(gulp.dest(filePath.tmp))
     .pipe(gulp.dest(filePath.build));
 });
