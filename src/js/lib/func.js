@@ -6,14 +6,14 @@ var Func = {
     if (r != null) return unescape(r[2]);
     return null;
   },
-  isWx: function() {
+  isWx: (function() {
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       return true;
     } else {
       return false;
     }
-  }
+  })()
 }
 
 
