@@ -1,18 +1,28 @@
-var ContentPath = "http://e4s.stg.dongfeng-nissan.com.cn/wap";
-var Api = {
-  zc_pay: ContentPath + '/oneyuan.htm?action=saveAwardOrder',
-  zc_count: ContentPath + '/oneyuan.htm?action=countAwardOrder',
-  clue: ContentPath + '/ajax/leaveInfo/cbbLeaveInfo.do',
-  zc: ContentPath + "/oneyuan.htm?action=loadActivityInfo",
-  r30: ContentPath + "/oneyuan.htm?action=loadR30ActivityInfo",
-  submitPay: ContentPath + "/oneyuan.htm?action=saveOrder",
-  r30Pay: ContentPath + "/oneyuan.htm?action=saveR30Order",
-  vcode: ContentPath + "/oneyuan.htm?action=getVcode",
-  vfan: ContentPath + "/oneyuan.htm?action=getOrderFans",
-  r30fan: ContentPath + "/oneyuan.htm?action=getOrderR30Fans",
-  city_api: ContentPath + "/oneyuan.htm?action=loadAllCity",
-  store_api: 'http://e4s.stg.dongfeng-nissan.com.cn/web/activity/activitySearch.do?actionType=wapdealerbycity',
-  carType: ContentPath + '/oneyuan.htm?action=loadAllCarType'
+let e4s = CONFIG.API.E4S;
+let Api = {
+  /*-----公共接口----*/
+  vcode_api: e4s + "/oneyuan.htm?action=getVcode",//验证码
+  clue_api: e4s + '/ajax/leaveInfo/cbbLeaveInfo.do',//留资
+  city_api: e4s + "/oneyuan.htm?action=loadAllCity",//城市
+  store_api: e4s + '/web/activity/activitySearch.do?actionType=wapdealerbycity',//专营店
+  carType_api: e4s + '/oneyuan.htm?action=loadAllCarType',//车型车系
+  wxpay_api: e4s + '/themes/chebaba/WCPay/jsapi2.jsp',//微信支付
+  /*-----公共接口----*/
+    
+  /*----一元夺券-----*/
+  zc_pay: e4s + '/oneyuan.htm?action=saveAwardOrder',// 支付
+  zc_count: e4s + '/oneyuan.htm?action=countAwardOrder',//活动数据
+  /*----一元夺券-----*/
+  
+  /*-----蓝鸟众筹 r30众筹 接口----*/
+  zc: e4s + "/oneyuan.htm?action=loadActivityInfo",
+  r30: e4s + "/oneyuan.htm?action=loadR30ActivityInfo",
+  submitPay: e4s + "/oneyuan.htm?action=saveOrder",
+  r30Pay: e4s + "/oneyuan.htm?action=saveR30Order",
+  vfan: e4s + "/oneyuan.htm?action=getOrderFans",
+  r30fan: e4s + "/oneyuan.htm?action=getOrderR30Fans" 
+  /*-----蓝鸟众筹 r30众筹 接口----*/
+  
 }
 
 module.exports = Api;

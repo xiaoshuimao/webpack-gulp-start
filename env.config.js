@@ -7,16 +7,18 @@ module.exports =  {
     },
     "LOC":{
         "API":{
-            "CBB":"http://172.26.153.45/cbbweb",
-            "LANYOU":"http://172.26.153.45/lanyou"
+            "DNDC":"http://172.26.153.45/cbbweb",
+            "E4Swap":"http://e4s.stg.dongfeng-nissan.com.cn/wap",
+            "E4S":"http://e4s.stg.dongfeng-nissan.com.cn"
         },
         "CONTEXT_PATH":"http://127.0.0.1:3000",
         "ASSERT_PATH":"http://127.0.0.1:3333"
     },
     "DEV":{
         "API":{
-            "CBB":"http://172.26.153.45/cbbweb",
-            "LANYOU":"http://172.26.153.45/lanyou"
+            "DNDC":"http://172.26.153.45/cbbweb",
+            "E4Swap":"http://e4s.stg.dongfeng-nissan.com.cn/wap",
+            "E4S":"http://e4s.stg.dongfeng-nissan.com.cn"
         },
         "CONTEXT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic",
         "ASSERT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic"
