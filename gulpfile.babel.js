@@ -24,7 +24,9 @@ filePath.page = ['./src/**/*.html'];
 filePath.js = ['./src/**/*.js'];
 filePath.css = ['./src/**/*.css', './src/**/*.less'];
 filePath.cimg = ['./src/cimg/*.jpg', './src/cimg/*.png'];
-filePath.img = ['./src/**/*.jpg', './src/**/*.png', './src/**/*.gif'];
+filePath.img = ['./src/**/*.jpg', './src/**/*.png'];
+filePath.gif = ['./src/**/*.gif'];
+
 filePath.build = './topic';
 
 let CONF = {
@@ -35,7 +37,7 @@ let CONF = {
 };
 
 /* ------------ 处理图片和 html ------------ */
-gulp.task('handle', ['handleHtml', 'handleImg', 'handleCImg']);
+gulp.task('handle', ['handleHtml', 'handleImg', 'handleCImg', 'handleFuckingGif']);
 gulp.task('handleImg', function () {
   return gulp.src(filePath.img)
     .pipe(changed(filePath.tmp))
@@ -58,13 +60,18 @@ gulp.task('handleCImg', function () {
     }))
     .pipe(gulp.dest(filePath.src + '/cimg'));
 });
-
+gulp.task('handleFuckingGif', function () {
+  return gulp.src(filePath.gif)
+    .pipe(changed(filePath.tmp))
+    .pipe(gulp.dest(filePath.tmp))
+    .pipe(gulp.dest(filePath.build));
+});
 gulp.task('handleHtml', function () {
   return gulp.src(filePath.page)
     .pipe(replace(CONF.CONST.CONTEXT_PATH, ENV_CONFIG[process.env.ENV].CONTEXT_PATH))
     .pipe(replace(CONF.CONST.ASSERT_PATH, ENV_CONFIG[process.env.ENV].ASSERT_PATH))
     .pipe(changed(filePath.tmp))
-    // .pipe(include())
+  // .pipe(include())
     .pipe(gulp.dest(filePath.tmp))
     .pipe(gulp.dest(filePath.build));
 });
