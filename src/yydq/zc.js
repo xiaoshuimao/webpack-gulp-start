@@ -14,6 +14,7 @@ $(function () {
 		type: 'post',
 		data: {},
 	}).done(function (d) {
+		alert(JSON.stringify(d));
 		let act = isWx ? d.wx : d.tmail;
 		act = act.split(',');
 		act.pop();
@@ -177,13 +178,14 @@ $(function () {
 		//调用支付接口
 		let wxPay = require('pay');
 		let openId = require('openid');
-		console.log('openid is ', openId);
+		alert('openid is ', openId);
 		function doPay(form) {
 			$.ajax({
 				url: zc_pay,
 				data: form,
 				dataType: 'json',
 			}).done(function (d) {
+				alert(JSON.stringify(d));
 				wxPay(d.orderId, openId, function (err) {
 					if (!err) { alert("支付成功！"); }
 				});
@@ -200,8 +202,10 @@ $(function () {
 				data: form,
 				dataType: 'json',
 			}).done(function (d) {
+				alert('留资成功')
 				console.log('留资成功');
 			}).fail(function (err) {
+				alert('留资失败');
 				console.log('留资失败');
 			})
 		}
