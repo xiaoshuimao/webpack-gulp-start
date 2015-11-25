@@ -178,7 +178,6 @@ $(function () {
 		//调用支付接口
 		let wxPay = require('pay');
 		let openId = require('openid');
-		alert(openId+' this is openid');
 		function doPay(form) {
 			$.ajax({
 				url: zc_pay,
