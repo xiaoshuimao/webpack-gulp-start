@@ -29,7 +29,7 @@
 		}
 	</style>
 	<div class="fuckyou">
-		æ­£åœ¨è°ƒç”¨å¾®ä¿¡æ”¯ä»˜ï¼Œè¯·è€å¿ƒç­‰å€™...
+		ÕıÔÚµ÷ÓÃÎ¢ĞÅÖ§¸¶£¬¸ĞĞ»ÄúµÄÄÍĞÄµÈ´ı...
 	</div>
 	<script>
 		function getQuery(name) {
@@ -63,7 +63,7 @@
 				}, function (res) {
 						if (res.err_msg == "get_brand_wcpay_request:ok") {					
 						} else {
-							alert('æŠ±æ­‰ï¼Œæ”¯ä»˜å¤±è´¥ã€‚è¯·åˆ·æ–°é¡µé¢é‡æ–°ä¸‹å•');
+							alert('ºÜ±§Ç¸£¬ÍøÂçÓĞµãÎÊÌâ£¬ÇëÖØĞÂÏÂµ¥¡£');
 							alert(res.err_msg);
 						}
 						history.back(-1);
