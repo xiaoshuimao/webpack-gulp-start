@@ -8,12 +8,12 @@ $(function () {
 	//引入弹框插件
 	let layer = require('layer');
 	//用 layer 搞一个消息提示
-	let msg = (type = '',text,time = 2,shadeClose = false) => {
+	let msg = (type = '', text, time = 1.5, shadeClose = false) => {
 		layer.open({
-			content:'<div class="' + type + '">' + text + '</div>',
-			time:time,
+			content: '<div class="' + type + '">' + text + '</div>',
+			time: time,
 			shadeClose: shadeClose
-			});
+		});
 	}
 	//活动数据
 	$.ajax({
@@ -43,7 +43,7 @@ $(function () {
 			$('.j-s').text(time.s);
 			 }, 1000);
 	}).fail(function (state, err, c) {
-		msg('no','初始化页面失败，请刷新页面');
+		msg('no', '初始化页面失败，请刷新页面');
 	});
 	
 	
@@ -92,7 +92,7 @@ $(function () {
       var phone = $('#phone').val();
       var phoneReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
       if (phoneReg == false) {
-				msg('no','请输入正确的手机号码');
+				msg('no', '请输入正确的手机号码');
       } else {
 				$('#getVcode').hide();
 				$.ajax({
@@ -117,12 +117,12 @@ $(function () {
 								$('#getVcode').show();
 							}
 						} else {
-							msg('no',d.errMsg);
+							msg('no', d.errMsg);
 							$('#getVcode').show();
 						}
 					},
 					error: function () {
-						msg('no','网络不给力，请重新点击获取验证码试试');
+						msg('no', '网络不给力，请重新点击获取验证码试试');
 						$('#getVcode').show();
 					}
 				});
@@ -142,24 +142,24 @@ $(function () {
 				storeId = $('#storeId').data('storeid'),
 				source = isWx ? '15' : '17';
 			if (!name) {
-				msg("no","请输入您的姓名");
+				msg("no", "请输入您的姓名");
 				return;
 			}
 			if (!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/)) {
-				msg("no","请输入正确的手机号码");
+				msg("no", "请输入正确的手机号码");
 				return;
 			}
 			if (!vcode) {
-				msg("no","请输入验证码")
+				msg("no", "请输入验证码")
 				return;
 			}
 			let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 			if (!idcard || (reg.test(idcard) === false)) {
-				msg("no","请输入正确的身份证号码");
+				msg("no", "请输入正确的身份证号码");
 				return false;
 			}
 			if (storeId == '') {
-				msg('no','请选择经销商');
+				msg('no', '请选择经销商');
 				return;
 			}
 			let submitCover = layer.open({
@@ -189,43 +189,48 @@ $(function () {
 				idcard: idcard,
 				ctype: type
 			});
-		}
-		//调用支付接口
-		let wxPay = require('pay');
-		let openId = require('openid');
-		function doPay(form) {
-			$.ajax({
-				url: zc_pay,
-				data: form,
-				dataType: 'json',
-			}).done(function (d) {
-				if (d.error == '0') {
-					wxPay(d.data.orderId, openId, function (err) {
-						if (!err) {
-							msg('yes','恭喜成功下单，请登录 m.chebaba.com 查看订单'); 
+		
+			//调用支付接口
+			let wxPay = require('pay');
+			let openId = require('openid');
+			function doPay(form) {
+				$.ajax({
+					url: zc_pay,
+					data: form,
+					dataType: 'json',
+				}).done(function (d) {
+					layer.close(submitCover);
+					if (d.error == '0') {
+						wxPay(d.data.orderId, openId, function (err) {
+							if (!err) {
+								msg('yes', '恭喜成功下单，请登录 m.chebaba.com 查看订单');
 							}
-					});
-				} else {
-					msg('no','支付失败，请刷新页面再试');
-				}
+						});
+					} else {
+						msg('no', d.errMsg || '支付失败，请刷新页面再试');
+						if (d.errMsg.indexOf('个人中心') >= 0) {
+							location.href = 'http://m.chebaba.com/member_wap.htm';
+						}
+					}
 
-			}).fail(function (err) {
-				msg('no','参与人数过多，请刷新页面再试');
-				location.reload();
-			})
-		}
-		//调用留资接口
-		function doClue(form) {
-			$.ajax({
-				url: clue_api,
-				data: form,
-				dataType: 'json',
-			}).done(function (d) {
-				hasDoClue = true;
-			}).fail(function (err) {
-				msg('no','留资失败');
-			})
+				}).fail(function (err) {
+					msg('no', '参与人数过多，请刷新页面再试');
+					location.reload();
+				})
+			}
+			//调用留资接口
+			function doClue(form) {
+				$.ajax({
+					url: clue_api,
+					data: form,
+					dataType: 'json',
+				}).done(function (d) {
+					hasDoClue = true;
+				}).fail(function (err) {
+					msg('no', '留资失败');
+				})
+			}
 		}
 	}
-	 
+
 });
