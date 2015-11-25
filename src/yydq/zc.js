@@ -53,7 +53,7 @@ $(function () {
 
 
 
-	if (!isWx) {
+	if (1) {
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
