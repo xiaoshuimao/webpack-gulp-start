@@ -33,10 +33,10 @@ module.exports =  {
     },
     "PRO":{
         "API":{
-            "CBB":"http://fun.chebaba.com/api",
-            "LANYOU":"http://fun.chebaba.com/lanyou"
+            "E4Swap":"http://m.chebaba.com",
+            "E4S":"http://m.chebaba.com"
         },
-        "CONTEXT_PATH":"http://mfun.chebaba.com",
-        "ASSERT_PATH":"http://mfun.chebaba.com"
+        "CONTEXT_PATH":"http://m.chebaba.com",
+        "ASSERT_PATH":"http://m.chebaba.com"
     }
 };

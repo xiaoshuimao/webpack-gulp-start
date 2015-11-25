@@ -6,7 +6,7 @@ let Api = {
   city_api: e4s + "/oneyuan.htm?action=loadAllCity",//城市
   store_api: e4s + '/web/activity/activitySearch.do?actionType=wapdealerbycity',//专营店
   carType_api: e4s + '/oneyuan.htm?action=loadAllCarType',//车型车系
-  wxpay_api: e4s + '/themes/chebaba/WCPay/jsapi2.jsp',//微信支付
+  wxpay_api: CONFIG.API.E4Swap + '/themes/chebaba/WCPay/jsapi2.jsp',//微信支付
   /*-----公共接口----*/
     
   /*----一元夺券-----*/
