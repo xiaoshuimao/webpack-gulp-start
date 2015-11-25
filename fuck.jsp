@@ -58,6 +58,7 @@
 		var api = '${CONTEXT}/themes/chebaba/WCPay/jsapi2.jsp';
 		var orderId = getQuery('orderId');
 		var openId = getQuery('openId');
+		alert(openId)
 		var _appId, _timeStamp, _nonceStr, _package, _paySign = '';
 		$.getJSON(api, { orderId: orderId, openId: openId }, function (data) {
 			_appId = data.appId;
