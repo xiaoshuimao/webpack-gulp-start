@@ -25,7 +25,6 @@ $(function () {
 		let act = isWx ? d.wx : d.tmail;
 		act = act.split(',');
 		act.pop();
-		console.log('活动数据', act);
 		$.each(act, function (idx, item) {
 			$('.j-have').eq(idx).text(item);
 			$('.bar').eq(idx).find('span').css('width', item * 100 / 299 + '%');
@@ -58,7 +57,7 @@ $(function () {
 
 
 
-	if (1) {
+	if (isWx()) {
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
@@ -69,7 +68,10 @@ $(function () {
 			layer.open({
 				type: 1,
 				content: require('form.html'),
-				style: "width:90%;border-radius:6px;"
+				style: "width:90%;border-radius:6px;",
+				end:function(){
+					$('.store-sel-wrap').remove();
+				}
 			});
 			//选择经销商
 			require('store/store_choose');

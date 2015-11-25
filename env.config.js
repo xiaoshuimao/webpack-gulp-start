@@ -37,6 +37,6 @@ module.exports =  {
             "E4S":"http://m.chebaba.com"
         },
         "CONTEXT_PATH":"http://m.chebaba.com",
-        "ASSERT_PATH":"http://m.chebaba.com"
+        "ASSERT_PATH":"http://m.chebaba.com/topic"
     }
 };
