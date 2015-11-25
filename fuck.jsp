@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=GBK" %>
 <%@ include file="/jsp/pub/pathHelper.jsp"%>
 <!DOCTYPE html>
-<%@ include file="/themes/chebaba/wxlogin.jsp" %>
 <html>
 
 <head>
@@ -12,6 +11,26 @@
 </head>
 
 <body>
+	<style>
+		.fuckyou{
+			  position: absolute;
+				width: 200px;
+				height: 200px;
+				text-align: center;
+				line-height: 200px;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				background: #fff;
+				border-radius: 50%;
+				word-break: break-all;
+		}
+	</style>
+	<div class="fuckyou">
+		正在调用微信支付，请耐心等候...
+	</div>
 	<script>
 		function getQuery(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -30,6 +49,7 @@
 		}
 		var api = '${CONTEXT}/themes/chebaba/WCPay/jsapi2.jsp';
 		var orderId = getQuery('orderId');
+		var openId = getQuery('openId');
 		var _appId, _timeStamp, _nonceStr, _package, _paySign = '';
 		$.getJSON(api, { orderId: orderId, openId: openId }, function (data) {
 			_appId = data.appId;

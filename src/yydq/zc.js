@@ -167,7 +167,7 @@ $(function () {
 			let submitCover = layer.open({
 				shadeClose: false,
 				type: 2,
-				content: '参与人数较多，正在努力处理您的请求...'
+				content: '正在为您跳转支付页面，请耐心等候支付页面加载...'
 			})
 			if (!hasDoClue) {
 				doClue({
@@ -203,7 +203,7 @@ $(function () {
 				}).done(function (d) {
 					layer.close(submitCover);
 					if (d.error == '0') {
-						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId;
+						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?openId=' + openId + '&orderId=' + d.data.orderId;
 						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {
 							if (!err) {
