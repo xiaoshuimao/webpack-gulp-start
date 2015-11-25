@@ -12,20 +12,28 @@
 
 <body>
 	<style>
+		body{
+			background-color: #eee;
+		}
 		.fuckyou{
-			  position: absolute;
-				width: 200px;
-				height: 200px;
-				text-align: center;
-				line-height: 200px;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				margin: auto;
-				background: #fff;
-				border-radius: 50%;
-				word-break: break-all;
+			 position: absolute;
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  padding: 33px 14px 0;
+  top: -30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+  border-radius: 5px;
+  word-break: break-all;
+  box-shadow: -4px 2px 9px #ddd;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
 		}
 	</style>
 	<div class="fuckyou">
