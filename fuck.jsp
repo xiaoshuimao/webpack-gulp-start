@@ -31,7 +31,7 @@
 		var api = '${CONTEXT}/themes/chebaba/WCPay/jsapi2.jsp';
 		var orderId = getQuery('orderId');
 		var _appId, _timeStamp, _nonceStr, _package, _paySign = '';
-		$.get(api, { orderId: orderId, openId: openId }, function (data) {
+		$.getJSON(api, { orderId: orderId, openId: openId }, function (data) {
 			_appId = data.appId;
 			_timeStamp = data.timeStamp;
 			_nonceStr = data.nonceStr;
@@ -50,7 +50,7 @@
 						}
 						history.back(-1);
 				});
-			}, "json");
+			});
 			});
 	</script>
 </body>
