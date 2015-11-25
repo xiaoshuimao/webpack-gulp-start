@@ -171,7 +171,8 @@ $(function () {
 				name: name,
 				phone: phone,
 				code: vcode,
-				idcard: idcard
+				idcard: idcard,
+				ctype:type
 			});
 		}
 		//调用支付接口
