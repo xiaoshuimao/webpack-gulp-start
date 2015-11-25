@@ -5,7 +5,7 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="GBK">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<title></title>
 	<script src="http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
