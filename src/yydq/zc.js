@@ -14,7 +14,6 @@ $(function () {
 		type: 'post',
 		data: {},
 	}).done(function (d) {
-		alert(JSON.stringify(d));
 		let act = isWx ? d.wx : d.tmail;
 		act = act.split(',');
 		act.pop();
@@ -25,7 +24,7 @@ $(function () {
 			$('.process').eq(idx).find('.quan span').text(Math.floor(item / 299));
 		});
 		//倒计时
-		let leftSec = new Date('2015-12-15 10:00:00') - (d.time ? new Date(d.time) : new Date());
+		let leftSec = new Date('2015/12/15 10:00:00') - (d.time ? new Date(d.time.replace(/-/g,'/')) : new Date());
 		let time = formatTime(leftSec);
 		setInterval(function () {
 			leftSec -= 1000;
