@@ -89,7 +89,26 @@ gulp.task('webpack-dev-server', function () {
 gulp.task('webpack:build', function (callback) {
   // Modify some webpack config options
   var myConfig = Object.create(getWebpackConfig(process.env.ENV));
+  myConfig.plugins = myConfig.plugins.concat(
+    new webpack.optimize.DedupePlugin()
+    );
 
+  // Run webpack
+  webpack(myConfig, function (err, stats) {
+    if (err) {
+      throw new gutil.PluginError('webpack:build', err);
+    }
+
+    gutil.log('[webpack:build]', stats.toString({
+      colors: true
+    }));
+
+    callback();
+  });
+});
+gulp.task('webpack:build_pro', function (callback) {
+  // Modify some webpack config options
+  var myConfig = Object.create(getWebpackConfig(process.env.ENV));
   myConfig.plugins = myConfig.plugins.concat(
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.MinChunkSizePlugin({
@@ -107,17 +126,16 @@ gulp.task('webpack:build', function (callback) {
   // Run webpack
   webpack(myConfig, function (err, stats) {
     if (err) {
-      throw new gutil.PluginError('webpack:build', err);
+      throw new gutil.PluginError('webpack:build_pro', err);
     }
 
-    gutil.log('[webpack:build]', stats.toString({
+    gutil.log('[webpack:build_pro]', stats.toString({
       colors: true
     }));
 
     callback();
   });
 });
-
 /* ----------- CLEAN --------------- */
 gulp.task('clean', function () {
   return gulp.src([filePath.tmp].concat(filePath.build), {
@@ -136,7 +154,7 @@ gulp.task('run', ['pro', 'serve']);
 gulp.task('build', ['loc', 'handle', 'webpack:build']);
 gulp.task('buildDev', ['dev', 'handle', 'webpack:build']);
 gulp.task('buildTest', ['test', 'handle', 'webpack:build']);
-gulp.task('buildPro', ['pro', 'handle', 'webpack:build']);
+gulp.task('buildPro', ['pro', 'handle', 'webpack:build_pro']);
 
 gulp.task('loc', function () {
   process.env.ENV = ENV_CONFIG.ENV.LOC;
