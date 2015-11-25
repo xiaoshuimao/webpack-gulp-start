@@ -208,8 +208,8 @@ $(function () {
 							}
 						});
 						*/
-						$('#fuck').attr('src', CONFIG.CONTEXT_PATH + '/theme/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId);
-						$('#fuck').show();
+						$('#fuck').attr('src', CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId);
+						$('#fuck').css('display','block');
 					} else {
 						msg('no', d.errMsg);
 						if (d.errMsg.indexOf('个人中心') >= 0) {

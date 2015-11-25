@@ -20,7 +20,7 @@ module.exports =  {
             "E4Swap":"http://e4s.stg.dongfeng-nissan.com.cn/wap",
             "E4S":"http://e4s.stg.dongfeng-nissan.com.cn"
         },
-        "CONTEXT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic",
+        "CONTEXT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap",
         "ASSERT_PATH":"http://e4s.stg.dongfeng-nissan.com.cn/wap/topic"
     },
     "TEST":{

@@ -27,14 +27,16 @@
 			_nonceStr = data.nonceStr;
 			_package = data.package_;
 			_paySign = data.paySign;
+			alert(orderId);
+			alert(_package);
 			WeixinJSBridge.invoke('getBrandWCPayRequest', {
 				"appId": _appId, "timeStamp": _timeStamp, "nonceStr": _nonceStr, "package": _package, "signType": "MD5", "paySign": _paySign
 			}, function (res) {
 				alert(res.err_msg);
 				if (res.err_msg == "get_brand_wcpay_request:ok") {
-					alert('成功')
+					alert('成功');
 				} else {
-					alert('失败')
+					alert('失败');
 					alert(res.err_msg);
 				}
 				window.parent.document.getElementById("main").style.display="none";
