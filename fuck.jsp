@@ -48,7 +48,7 @@
 							alert('失败');
 							alert(res.err_msg);
 						}
-						window.parent.document.getElementById("fuck").style.display="none";
+						history.back(-1);
 				});
 			}, "json");
 			});
