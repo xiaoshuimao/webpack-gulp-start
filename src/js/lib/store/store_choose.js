@@ -244,7 +244,8 @@ let cbbMap = require('map');
       if ($('#mapNav_wrap').length > 0) {
         $('#mapNav_wrap').show();
       } else {
-        let html = '<div id="mapNav_wrap" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1002;">\
+        var top = scrollY;
+        let html = '<div id="mapNav_wrap" style="position:absolute;top:' + top + 'px;left:0;width:100%;height:100%;z-index:1002;">\
     		         <a href="#" class="store-sel__btn-close--map store-sel__btn-close">X</a>\
     			     <div id="mapNav" class="amap-container" style="position: absolute;width: 100%;height:100%;" >\
     			     </div>\
