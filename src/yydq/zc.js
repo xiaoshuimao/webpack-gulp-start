@@ -7,6 +7,14 @@ import {city_api, store_api, zc_pay, zc_count, clue_api, vcode_api} from 'api';
 $(function () {
 	//引入弹框插件
 	let layer = require('layer');
+	//用 layer 搞一个消息提示
+	let msg = (type = '',text,time = 2,shadeClose = false) => {
+		layer.open({
+			content:'<div class="' + type + '">' + text + '</div>',
+			time:time,
+			shadeClose: shadeClose
+			});
+	}
 	//活动数据
 	$.ajax({
 		url: zc_count,
@@ -24,7 +32,7 @@ $(function () {
 			$('.process').eq(idx).find('.quan span').text(Math.floor(item / 299));
 		});
 		//倒计时
-		let leftSec = new Date('2015/12/15 10:00:00') - (d.time ? new Date(d.time.replace(/-/g,'/')) : new Date());
+		let leftSec = new Date('2015/12/15 10:00:00') - (d.time ? new Date(d.time.replace(/-/g, '/')) : new Date());
 		let time = formatTime(leftSec);
 		setInterval(function () {
 			leftSec -= 1000;
@@ -35,9 +43,7 @@ $(function () {
 			$('.j-s').text(time.s);
 			 }, 1000);
 	}).fail(function (state, err, c) {
-		console.log(state, err, c)
-		console.log('初始化页面失败，正在为您刷新页面');
-		// location.reload();
+		msg('no','初始化页面失败，请刷新页面');
 	});
 	
 	
@@ -86,7 +92,7 @@ $(function () {
       var phone = $('#phone').val();
       var phoneReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
       if (phoneReg == false) {
-				alert('请输入正确的手机号码');
+				msg('no','请输入正确的手机号码');
       } else {
 				$('#getVcode').hide();
 				$.ajax({
@@ -111,12 +117,12 @@ $(function () {
 								$('#getVcode').show();
 							}
 						} else {
-							alert(d.errMsg);
+							msg('no',d.errMsg);
 							$('#getVcode').show();
 						}
 					},
 					error: function () {
-						alert('网络不给力，请重新点击获取验证码试试');
+						msg('no','网络不给力，请重新点击获取验证码试试');
 						$('#getVcode').show();
 					}
 				});
@@ -127,6 +133,7 @@ $(function () {
 			submitForm();
 		});
 		//表单验证
+		let hasDoClue = false;
 		function submitForm() {
 			var name = $('#name').val(),
 				phone = $('#phone').val(),
@@ -135,44 +142,52 @@ $(function () {
 				storeId = $('#storeId').data('storeid'),
 				source = isWx ? '15' : '17';
 			if (!name) {
-				alert("请输入姓名")
+				msg("no","请输入您的姓名");
 				return;
 			}
 			if (!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/)) {
-				alert("请输入正确的手机号码");
+				msg("no","请输入正确的手机号码");
 				return;
 			}
 			if (!vcode) {
-				alert("请输入验证码")
+				msg("no","请输入验证码")
 				return;
 			}
 			let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 			if (!idcard || (reg.test(idcard) === false)) {
-				alert("请输入正确的身份证号码");
+				msg("no","请输入正确的身份证号码");
 				return false;
 			}
 			if (storeId == '') {
-				alert('请选择经销商');
+				msg('no','请选择经销商');
 				return;
 			}
-			doClue({
-				name: name,
-				phone: phone,
-				storeId: storeId,
-				carSeriesId: car,
-				authKey: 'abc123!!',
-				actionType: 'saveclue',
-				source: source,
-				activityName: '一元夺券',
-				clueType: 6,
-				pageId:'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
+			let submitCover = layer.open({
+				shadeClose: false,
+				type: 2,
+				content: '参与人数较多，正在努力处理您的请求...'
 			})
+			if (!hasDoClue) {
+				doClue({
+					name: name,
+					phone: phone,
+					storeId: storeId,
+					carSeriesId: car,
+					authKey: 'abc123!!',
+					actionType: 'saveclue',
+					source: source,
+					activityName: '一元夺券',
+					clueType: 6,
+					pageId: 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
+				})
+			}
+
 			doPay({
 				name: name,
 				phone: phone,
 				code: vcode,
 				idcard: idcard,
-				ctype:type
+				ctype: type
 			});
 		}
 		//调用支付接口
@@ -184,13 +199,18 @@ $(function () {
 				data: form,
 				dataType: 'json',
 			}).done(function (d) {
-				alert(JSON.stringify(d));
-				wxPay(d.orderId, openId, function (err) {
-					if (!err) { alert("支付成功！"); }
-				});
+				if (d.error == '0') {
+					wxPay(d.data.orderId, openId, function (err) {
+						if (!err) {
+							msg('yes','恭喜成功下单，请登录 m.chebaba.com 查看订单'); 
+							}
+					});
+				} else {
+					msg('no','支付失败，请刷新页面再试');
+				}
+
 			}).fail(function (err) {
-				console.log(err);
-				alert('参与人数过多，请刷新页面再试');
+				msg('no','参与人数过多，请刷新页面再试');
 				location.reload();
 			})
 		}
@@ -201,13 +221,11 @@ $(function () {
 				data: form,
 				dataType: 'json',
 			}).done(function (d) {
-				alert('留资成功')
-				console.log('留资成功');
+				hasDoClue = true;
 			}).fail(function (err) {
-				alert('留资失败');
-				console.log('留资失败');
+				msg('no','留资失败');
 			})
 		}
 	}
-
+	 
 });
