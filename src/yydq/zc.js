@@ -55,9 +55,9 @@ $(function () {
 		})
 	});
 
+	
 
-
-	if (isWx()) {
+	if (isWx) {
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
