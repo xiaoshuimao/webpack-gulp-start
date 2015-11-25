@@ -44,11 +44,10 @@ gulp.task('handleImg', function () {
 
 gulp.task('handleHtml', function () {
   return gulp.src(filePath.page)
+    .pipe(changed(filePath.tmp))
+    .pipe(gulp.dest(filePath.tmp))
     .pipe(replace(CONF.CONST.CONTEXT_PATH, ENV_CONFIG[process.env.ENV].CONTEXT_PATH))
     .pipe(replace(CONF.CONST.ASSERT_PATH, ENV_CONFIG[process.env.ENV].ASSERT_PATH))
-    .pipe(changed(filePath.tmp))
-    //.pipe(include())
-    .pipe(gulp.dest(filePath.tmp))
     .pipe(gulp.dest(filePath.build));
 });
 
