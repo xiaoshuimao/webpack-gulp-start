@@ -201,13 +201,17 @@ $(function () {
 				}).done(function (d) {
 					layer.close(submitCover);
 					if (d.error == '0') {
+						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {
 							if (!err) {
 								msg('yes', '恭喜成功下单，请登录 m.chebaba.com 查看订单');
 							}
 						});
+						*/
+						$('#fuck').attr('src', CONFIG.CONTEXT_PATH + '/theme/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId);
+						$('#fuck').show();
 					} else {
-						msg('no', d.errMsg || '支付失败，请刷新页面再试');
+						msg('no', d.errMsg);
 						if (d.errMsg.indexOf('个人中心') >= 0) {
 							location.href = 'http://m.chebaba.com/member_wap.htm';
 						}
