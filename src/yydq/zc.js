@@ -53,7 +53,7 @@ $(function () {
 
 
 
-	if (isWx) {
+	if (!isWx) {
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
@@ -178,7 +178,7 @@ $(function () {
 		//调用支付接口
 		let wxPay = require('pay');
 		let openId = require('openid');
-		alert('openid is ', openId);
+		alert(openId+' this is openid');
 		function doPay(form) {
 			$.ajax({
 				url: zc_pay,
