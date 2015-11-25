@@ -195,7 +195,6 @@ $(function () {
 			//调用支付接口
 			let wxPay = require('pay');
 			let openId = require('openid');
-			alert(openId)
 			function doPay(form) {
 				$.ajax({
 					url: zc_pay,
@@ -204,7 +203,6 @@ $(function () {
 				}).done(function (d) {
 					layer.close(submitCover);
 					if (d.error == '0') {
-						alert(openId)
 						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?openId=' + openId + '&orderId=' + d.data.orderId;
 						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {

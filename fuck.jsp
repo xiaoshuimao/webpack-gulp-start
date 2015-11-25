@@ -58,7 +58,6 @@
 		var api = '${CONTEXT}/themes/chebaba/WCPay/jsapi2.jsp';
 		var orderId = getQuery('orderId');
 		var openId = getQuery('openId');
-		alert(openId)
 		var _appId, _timeStamp, _nonceStr, _package, _paySign = '';
 		$.getJSON(api, { orderId: orderId, openId: openId }, function (data) {
 			_appId = data.appId;
@@ -72,8 +71,6 @@
 				}, function (res) {
 						if (res.err_msg == "get_brand_wcpay_request:ok") {					
 						} else {
-							alert('很抱歉，网络有点问题，请重新下单。');
-							alert(res.err_msg);
 						}
 						history.back(-1);
 				});
