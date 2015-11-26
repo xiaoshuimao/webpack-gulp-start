@@ -215,7 +215,7 @@ $(function () {
 					type:'post'
 				}).done(function (d) {
 					layer.close(submitCover);
-					if (!(d.error)) {
+					if (d.error==0||d.error=='0') {
 						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId;
 						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {
