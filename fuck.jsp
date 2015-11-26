@@ -69,10 +69,18 @@
 				WeixinJSBridge.invoke('getBrandWCPayRequest', {
 				"appId": _appId, "timeStamp": _timeStamp, "nonceStr": _nonceStr, "package": _package, "signType": "MD5", "paySign": _paySign
 				}, function (res) {
-						if (res.err_msg == "get_brand_wcpay_request:ok") {					
-						} else {
+						//get_brand_wcpay_request:fail 
+						if (res.err_msg == "get_brand_wcpay_request:ok") {
+							alert("支付成功，正在返回...")
+							history.back(-1);					
+						} else if(res.err_msg = "get_brand_wcpay_request:cancel"){
+							alert("您取消了支付，请前往 m.chebaba.com 登录个人中心，支付未付款订单。")
+							history.back(-1);
+						}else{
+							alert(res.err_msg);
+							history.back(-1);
 						}
-						history.back(-1);
+						
 				});
 			});
 			});

@@ -239,7 +239,8 @@ $(function () {
 				})
 			}
 		}
-		require('share')('hello',null,'desc','http://www.baidu.com');
+		//微信分享设置
+		require('share')(null,null,'一元夺券',location.href.split('openId')[0]);
 	}
 });
 
