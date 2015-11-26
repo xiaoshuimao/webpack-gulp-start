@@ -194,8 +194,9 @@ $(function () {
 			});
 		
 			//调用支付接口
-			let wxPay = require('pay');
+			//let wxPay = require('pay');
 			let openId = require('openid');
+			alert(openId);
 			function doPay(form) {
 				$.ajax({
 					url: zc_pay,
@@ -231,6 +232,7 @@ $(function () {
 				$.ajax({
 					url: clue_api,
 					data: form,
+					type: 'post',
 					dataType: 'json',
 				}).done(function (d) {
 					hasDoClue = true;
@@ -240,7 +242,7 @@ $(function () {
 			}
 		}
 		//微信分享设置
-		require('share')(null,null,'一元夺券',location.href.split('openId')[0]);
+		//require('share')(null,null,'一元夺券',location.href.split('openId')[0]);
 	}
 });
 
