@@ -14,7 +14,7 @@ let cbbMap = require('map');
     var mycityVar = '';
 
     var Default = {
-      'html': '<div class="store-sel-wrap" style="z-index:1001;display:none;"><a href="#" class="store-sel__btn-close store-sel__btn-close1">X</a><div class="store-sel"> <div class="panel-block header"> <div class="search-select"> <div class="search-select__type-sel"></div> <i class="search-select__icon-down"></i></div><div class="place-msg" ><i class="place-msg__icon"></i> <label>当前位置:</label><span class="f-colorgra place-msg__current"></span> </div> </div></div></div>',
+      'html': '<div class="store-sel-wrap" style="z-index:1001;display:none;"><a href="###" class="store-sel__btn-close store-sel__btn-close1">X</a><div class="store-sel"> <div class="panel-block header"> <div class="search-select"> <div class="search-select__type-sel"></div> <i class="search-select__icon-down"></i></div><div class="place-msg" ><i class="place-msg__icon"></i> <label>当前位置:</label><span class="f-colorgra place-msg__current"></span> </div> </div></div></div>',
       'data': {},
       'param': {},
       'placeUrl': '',
