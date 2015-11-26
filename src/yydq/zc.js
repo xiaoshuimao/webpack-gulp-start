@@ -91,6 +91,7 @@ $(function () {
 		
 		//获取验证码
 		$('body').on('click', '#getVcode', function () {
+			$('#vcode').focus();
       var phone = $('#phone').val();
       var phoneReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
       if (phoneReg == false) {
@@ -238,6 +239,8 @@ $(function () {
 				})
 			}
 		}
+		require('share')('hello',null,'desc','http://www.baidu.com');
 	}
-
 });
+
+

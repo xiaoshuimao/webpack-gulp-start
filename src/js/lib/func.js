@@ -46,6 +46,16 @@ let Func = {
       if (cval != null)
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
     }
+  },
+  addjs: function (url, callback) {
+    let js = document.createElement('script');
+    js.type = 'text/javascript';
+    js.async = true;
+    js.src = url;
+    js.onload = function () {
+      callback();
+    }
+    document.body.appendChild(js);
   }
 }
 
