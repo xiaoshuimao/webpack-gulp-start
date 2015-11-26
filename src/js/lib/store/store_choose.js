@@ -241,12 +241,12 @@ let cbbMap = require('map');
     }
 
     function initMapDom() {
+      var top = scrollY;
       if ($('#mapNav_wrap').length > 0) {
-        $('#mapNav_wrap').show();
+        $('#mapNav_wrap').css('top',top).show();
       } else {
-        var top = scrollY;
         let html = '<div id="mapNav_wrap" style="position:absolute;top:' + top + 'px;left:0;width:100%;height:100%;z-index:1002;">\
-    		         <a href="#" class="store-sel__btn-close--map store-sel__btn-close">X</a>\
+    		         <a href="###" class="store-sel__btn-close--map store-sel__btn-close">X</a>\
     			     <div id="mapNav" class="amap-container" style="position: absolute;width: 100%;height:100%;" >\
     			     </div>\
     		      </div>';

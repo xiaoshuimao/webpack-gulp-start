@@ -1,5 +1,6 @@
 //微信分享代码
 import {addjs} from 'func';
+import $ from 'jq';
 let share = (title = document.title, imgUrl = null, desc = null, link = location.href) => {
   addjs('http://res.wx.qq.com/open/js/jweixin-1.0.0.js', function () {
     $.ajax({
