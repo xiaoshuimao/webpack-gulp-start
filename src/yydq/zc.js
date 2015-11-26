@@ -242,7 +242,7 @@ $(function () {
 			}
 		}
 		//微信分享设置
-		//require('share')(null,null,'一元夺券',location.href.split('openId')[0]);
+		require('share')("一元夺券，买车更优惠！",CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.jpg','一元夺券',location.href.split('openId')[0]);
 	}
 });
 
