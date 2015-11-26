@@ -1,6 +1,6 @@
 import {getQuery,cookie} from 'func';
 let openId = getQuery('openid') || cookie.get('openId');
-if(openId){
+if(openId && openId !== 'null'){
 	cookie.set('openId', openId, 30);
 }
 if(!openId){

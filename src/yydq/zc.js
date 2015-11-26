@@ -48,16 +48,17 @@ $(function () {
 	
 	//活动解读按钮
 	$('.banner .btn').click(function () {
+		_smq.push(['custom','1yuan5-WAP','rule']);
 		layer.open({
 			type: 1,
 			content: require('./rule.html'),
 			style: "width:90%;height:80%;overflow:auto;border-radius:5px;"
 		})
 	});
-
-	
-
+	//布码
+	$('.floor .btn').click(function () {type = $(this).data('type');_smq.push(['custom','1yuan5-WAP','button' + type]);})
 	if (isWx) {
+		let openId = require('openid');
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
@@ -195,7 +196,6 @@ $(function () {
 		
 			//调用支付接口
 			//let wxPay = require('pay');
-			let openId = require('openid');
 			function doPay(form) {
 				$.ajax({
 					url: zc_pay,
@@ -235,6 +235,7 @@ $(function () {
 					dataType: 'json',
 				}).done(function (d) {
 					hasDoClue = true;
+					_smq.push(['custom','1yuan5-WAP-lead-1','',form.phone]);
 				}).fail(function (err) {
 					msg('no', '留资失败');
 				})
