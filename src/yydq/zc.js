@@ -48,38 +48,38 @@ $(function () {
 	
 	//活动解读按钮
 	$('.banner .btn').click(function () {
-		_smq.push(['custom', '1yuan5-WAP', 'rule']);
+		_smq.push(['custom','1yuan5-WAP','rule']);
 		layer.open({
 			type: 1,
 			content: require('./rule.html'),
 			style: "width:90%;height:80%;overflow:auto;border-radius:5px;",
-			success: function () {
-				$('html,body').addClass('lock');
-			},
-			end: function () {
+			success: function(){
+					$('html,body').addClass('lock');
+				},
+			end:function(){
 				$('html,body').removeClass('lock');
 			}
 		})
 	});
 	//布码
-	$('.floor .btn').click(function () { type = $(this).data('type'); _smq.push(['custom', '1yuan5-WAP', 'button' + type]); })
+	$('.floor .btn').click(function () {type = $(this).data('type');_smq.push(['custom','1yuan5-WAP','button' + type]);})
 	if (isWx) {
-		let openId = require('openid');
+		//let openId = require('openid');
 		//一元夺券按钮 微信端
-		var type = 1, car = '', href = '';
+		var type = 1, car = '';
 		$('.floor .btn').click(function (e) {
 			e.preventDefault();
-			href = this.attr('href');
 			type = $(this).data('type');
 			car = $(this).data('car');
+			console.log(car, type);
 			layer.open({
 				type: 1,
 				content: require('form.html'),
 				style: "width:90%;border-radius:6px;",
-				success: function () {
+				success: function(){
 					$('html,body').addClass('lock');
 				},
-				end: function () {
+				end:function(){
 					$('.store-sel-wrap').remove();
 					$('html,body').removeClass('lock');
 				}
@@ -97,6 +97,9 @@ $(function () {
 				}
 			});
 		});
+
+
+
 		//获取验证码
 		$('body').on('click', '#getVcode', function () {
 			$('#vcode').focus();
@@ -111,7 +114,7 @@ $(function () {
 					data: { 'phone': phone },
 					dataType: "json",
 					success: function (d) {
-						if (!(d.error * 1)) {
+						if (!(d.error*1)) {
 							$('#timeVcode').show().find('span').text('60');
 							var clock = function () {
 								setTimeout(counter, 1000);
@@ -144,6 +147,7 @@ $(function () {
 			submitForm();
 		});
 		//表单验证
+		let hasDoClue = false;
 		function submitForm() {
 			var name = $('#name').val(),
 				phone = $('#phone').val(),
@@ -175,33 +179,31 @@ $(function () {
 			let submitCover = layer.open({
 				shadeClose: false,
 				type: 2,
-				content: isWx ? '正在为您跳转支付页面，请耐心等候支付页面加载...' : '正在跳转天猫，请在天猫下单抢购...'
+				content: '正在为您跳转支付页面，请耐心等候支付页面加载...'
 			})
-
-			doClue({
-				name: name,
-				phone: phone,
-				storeId: storeId,
-				carSeriesId: car,
-				authKey: 'abc123!!',
-				actionType: 'saveclue',
-				source: source,
-				activityName: '一元夺券',
-				clueType: 6,
-				pageId: 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
-			});
-
-			if (isWx) {
-				doPay({
+			if (!hasDoClue) {
+				doClue({
 					name: name,
 					phone: phone,
-					code: vcode,
-					idcard: idcard,
-					ctype: type,
-					storeId: storeId
-				});
-			}	
-			
+					storeId: storeId,
+					carSeriesId: car,
+					authKey: 'abc123!!',
+					actionType: 'saveclue',
+					source: source,
+					activityName: '一元夺券',
+					clueType: 6,
+					pageId: 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
+				})
+			}
+
+			doPay({
+				name: name,
+				phone: phone,
+				code: vcode,
+				idcard: idcard,
+				ctype: type,
+				storeId:storeId
+			});
 		
 			//调用支付接口
 			//let wxPay = require('pay');
@@ -210,11 +212,11 @@ $(function () {
 					url: zc_pay,
 					data: form,
 					dataType: 'json',
-					type: 'post'
+					type:'post'
 				}).done(function (d) {
 					layer.close(submitCover);
-					if (!d.error * 1) {
-						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?openId=' + openId + '&orderId=' + d.data.orderId;
+					if (!d.error*1) {
+						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?orderId=' + d.data.orderId;
 						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {
 							if (!err) {
@@ -244,17 +246,15 @@ $(function () {
 					type: 'post',
 					dataType: 'json',
 				}).done(function (d) {
-					if(!isWx){
-						location.href = href;
-					}
-					_smq.push(['custom', '1yuan5-WAP-lead-1', '', form.phone]);
+					hasDoClue = true;
+					_smq.push(['custom','1yuan5-WAP-lead-1','',form.phone]);
 				}).fail(function (err) {
 					msg('no', '留资失败');
 				})
 			}
 		}
 		//微信分享设置
-		if(isWx){require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.jpg', '一元夺券', location.href.split('openId')[0]);}
+		require('share')("一元夺券，买车更优惠！",CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.jpg','一元夺券',location.href.split('openId')[0]);
 	}
 });
 
