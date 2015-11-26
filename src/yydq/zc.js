@@ -52,7 +52,13 @@ $(function () {
 		layer.open({
 			type: 1,
 			content: require('./rule.html'),
-			style: "width:90%;height:80%;overflow:auto;border-radius:5px;"
+			style: "width:90%;height:80%;overflow:auto;border-radius:5px;",
+			success: function(){
+					$('html,body').addClass('lock');
+				},
+			end:function(){
+				$('html,body').removeClass('lock');
+			}
 		})
 	});
 	//布码
