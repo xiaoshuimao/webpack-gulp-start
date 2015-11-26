@@ -57,7 +57,7 @@ $(function () {
 	});
 	//布码
 	$('.floor .btn').click(function () {type = $(this).data('type');_smq.push(['custom','1yuan5-WAP','button' + type]);})
-	if (1) {
+	if (isWx) {
 		let openId = require('openid');
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
