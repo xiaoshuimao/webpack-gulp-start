@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=GBK" %>
 <%@ include file="/jsp/pub/pathHelper.jsp"%>
 <!DOCTYPE html>
+<%@ include file="/themes/chebaba/wxlogin.jsp" %>
 <html>
 
 <head>
@@ -57,7 +58,6 @@
 		}
 		var api = '${CONTEXT}/themes/chebaba/WCPay/jsapi2.jsp';
 		var orderId = getQuery('orderId');
-		var openId = getQuery('openId');
 		var _appId, _timeStamp, _nonceStr, _package, _paySign = '';
 		$.getJSON(api, { orderId: orderId, openId: openId }, function (data) {
 			_appId = data.appId;
