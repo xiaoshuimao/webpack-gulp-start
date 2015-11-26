@@ -114,7 +114,7 @@ $(function () {
 					data: { 'phone': phone },
 					dataType: "json",
 					success: function (d) {
-						if (!~~d.error) {
+						if (!(d.error*1)) {
 							$('#timeVcode').show().find('span').text('60');
 							var clock = function () {
 								setTimeout(counter, 1000);
