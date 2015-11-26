@@ -70,8 +70,12 @@ $(function () {
 				type: 1,
 				content: require('form.html'),
 				style: "width:90%;border-radius:6px;",
+				success: function(){
+					$('html,body').addClass('lock');
+				},
 				end:function(){
 					$('.store-sel-wrap').remove();
+					$('html,body').removeClass('lock');
 				}
 			});
 			//选择经销商
