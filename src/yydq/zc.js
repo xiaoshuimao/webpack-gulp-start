@@ -57,7 +57,7 @@ $(function () {
 	});
 	//布码
 	$('.floor .btn').click(function () {type = $(this).data('type');_smq.push(['custom','1yuan5-WAP','button' + type]);})
-	if (isWx) {
+	if (1) {
 		let openId = require('openid');
 		//一元夺券按钮 微信端
 		var type = 1, car = '';
@@ -195,7 +195,8 @@ $(function () {
 				phone: phone,
 				code: vcode,
 				idcard: idcard,
-				ctype: type
+				ctype: type,
+				storeId:storeId
 			});
 		
 			//调用支付接口
@@ -207,7 +208,7 @@ $(function () {
 					dataType: 'json',
 				}).done(function (d) {
 					layer.close(submitCover);
-					if (d.error == '0') {
+					if (!~~d.error) {
 						location.href = CONFIG.CONTEXT_PATH + '/themes/chebaba/WCPay/fuck.jsp?openId=' + openId + '&orderId=' + d.data.orderId;
 						/*支付改用fuck方式
 						wxPay(d.data.orderId, openId, function (err) {
