@@ -98,7 +98,6 @@ $(function () {
 		});
 		//获取验证码
 		$('body').on('click', '#getVcode', function () {
-		$('#vcode').focus();
 		var phone = $('#phone').val();
 		var phoneReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
 		if (phoneReg == false) {
@@ -137,7 +136,7 @@ $(function () {
 				}
 			});
 		}
-	})
+		})
 		//表单提交按钮
 		$('body').on('click', '#yes', function () {
 		submitForm();
@@ -246,7 +245,7 @@ $(function () {
 				_smq.push(['custom', '1yuan5-WAP-lead-1', '', form.phone]);
 				if (!isWx) {
 					location.href = href;
-				}				
+				}
 			}).fail(function (err) {
 				msg('no', '留资失败');
 			})
