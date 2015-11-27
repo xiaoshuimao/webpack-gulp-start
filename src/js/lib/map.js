@@ -1,4 +1,5 @@
-var cbbMap = function() {
+
+let cbbMap = function() {
   this.getAddressByPos = function(pos, callback) {
     var geoc = new BMap.Geocoder();
     geoc.getLocation(pos, function(rs) {
