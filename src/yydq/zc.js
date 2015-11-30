@@ -43,13 +43,12 @@ $(function () {
 			type:'get'
 		}).done(function(d){
 			if(d.error == '0' && d.mess == 'ok'){
-				let cars = d.data;
-				for(var car of cars){
-					let li = $('[data-car="' + car.series_id + '"]').parents('li');
-					li.find('.j-have').text(car.inventory);
-					li.find('.bar span').css('width', car.inventory * 100 / 299 + '%');
-					li.find('.quan span').text(Math.floor(car.inventory / 299));
-				}
+				$.each(d.data, function(i, item){
+					let li = $('[data-car="' + item.series_id + '"]').parents('li');
+					li.find('.j-have').text(item.inventory);
+					li.find('.bar span').css('width', item.inventory * 100 / 299 + '%');
+					li.find('.quan span').text(Math.floor(item.inventory / 299));
+				});
 			}else{
 				msg('no', d.mess);
 			}
