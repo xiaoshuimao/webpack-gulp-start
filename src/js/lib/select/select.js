@@ -57,7 +57,7 @@ import $ from 'jq';
         options.html += '<ul data-type="' + options.sign + '" class="select-list select-list--vel' + i + '" style="display:none">';
 
         if (options.hasSearch) {
-          options.html += '<li class="select-title "><a href="###" class="select-title__arrow"><i class="u__icon u__icon--right"></i></a>' + options.title[i] + '</li></ul>';
+          options.html += '<li class="select-title "><a href="javascript:;" class="select-title__arrow"><i class="u__icon u__icon--right"></i></a>' + options.title[i] + '</li></ul>';
         } else {
           options.html += '<li class="select-title "><div class="select-title__arrow"></div> <input class="select-title__message" placeholder="' + options.title[i] + '"></li></ul>';
         }
