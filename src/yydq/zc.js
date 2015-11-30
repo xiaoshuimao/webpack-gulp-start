@@ -15,41 +15,66 @@ $(function () {
 			shadeClose: shadeClose
 		});
 	}
-	//活动数据
-	$.ajax({
-		url: zc_count,
-		dataType: 'json',
-		type: 'post',
-		data: {},
-	}).done(function (d) {
-		let act = isWx ? d.wx : d.tmail;
-		act = act.split(',');
-		act.pop();
-		$.each(act, function (idx, item) {
-			$('.j-have').eq(idx).text(item);
-			$('.bar').eq(idx).find('span').css('width', item * 100 / 299 + '%');
-			$('.process').eq(idx).find('.quan span').text(Math.floor(item / 299));
-		});
-		//倒计时
-		let leftSec = new Date('2015/12/15 10:00:00') - (d.time ? new Date(d.time.replace(/-/g, '/')) : new Date());
-		let time = formatTime(leftSec);
-		setInterval(function () {
-			leftSec -= 1000;
-			time = formatTime(leftSec);
-			$('.j-d').text(time.d);
-			$('.j-h').text(time.h);
-			$('.j-m').text(time.m);
-			$('.j-s').text(time.s);
-			 }, 1000);
-	}).fail(function (state, err, c) {
-		msg('no', '初始化页面失败，请刷新页面');
-	});
 	
+	//活动数据
+	if (isWx) {
+		$.ajax({
+			url: zc_count,
+			dataType: 'json',
+			type: 'post',
+			data: {},
+		}).done(function (d) {
+			let act = isWx ? d.wx : d.tmail;
+			act = act.split(',');
+			act.pop();
+			$.each(act, function (idx, item) {
+				$('.j-have').eq(idx).text(item);
+				$('.bar').eq(idx).find('span').css('width', item * 100 / 299 + '%');
+				$('.process').eq(idx).find('.quan span').text(Math.floor(item / 299));
+			});
+
+		}).fail(function (state, err, c) {
+			msg('no', '初始化页面失败，请刷新页面');
+		});
+	} else {
+		$.ajax({
+			url:'http://121.41.173.5/webservice/limited_buy.php?act=rush_purchase&type=2',
+			dataType:'json',
+			type:'get'
+		}).done(function(d){
+			if(d.error == '0' && d.mess == 'ok'){
+				let cars = d.data;
+				for(var car of cars){
+					let li = $('[data-car="' + car.series_id + '"]').parents('li');
+					li.find('.j-have').text(car.inventory);
+					li.find('.bar span').css('width', car.inventory * 100 / 299 + '%');
+					li.find('.quan span').text(Math.floor(car.inventory / 299));
+				}
+			}else{
+				msg('no', d.mess);
+			}
+		}).fail(function(){
+			msg('no', '初始化页面失败，请刷新页面');
+		})
+	}
+	
+	
+	//倒计时
+	let leftSec = new Date('2015/12/15 10:00:00') - new Date();
+	let time = formatTime(leftSec);
+	setInterval(function () {
+		leftSec -= 1000;
+		time = formatTime(leftSec);
+		$('.j-d').text(time.d);
+		$('.j-h').text(time.h);
+		$('.j-m').text(time.m);
+		$('.j-s').text(time.s);
+	}, 1000);
 	
 	//活动解读按钮
 	$('.banner .btn').click(function () {
 		_smq.push(['custom', '1yuan5-WAP', 'rule']);
-		layer.open({
+		let actLayer = layer.open({
 			type: 1,
 			content: require('./rule.html'),
 			style: "width:90%;height:80%;overflow:auto;border-radius:5px;",
@@ -59,8 +84,12 @@ $(function () {
 			end: function () {
 				$('html,body').removeClass('lock');
 			}
-		})
+		});
+		$('.rule .close').click(function () {
+			layer.close(actLayer);
+		});
 	});
+	
 	//布码
 	$('.floor .btn').click(function () { type = $(this).data('type'); _smq.push(['custom', '1yuan5-WAP', 'button' + type]); })
 
@@ -87,7 +116,7 @@ $(function () {
 		require('store/store_choose');
 		$('.store').storeSelect({
 			'placeUrl': city_api,
-			'storeUrl': store_api,
+			'storeUrl': store_api + '&carBrandCode=1',
 			'callback': function (eve) {
 				var store = eve.find('.store-info-left__shop-name');
 				var input = $('#storeId');

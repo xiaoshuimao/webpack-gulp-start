@@ -182,6 +182,7 @@ body {
 .rule{
 	padding:10px 20px 20px;
 	border-radius: 5px;
+	position: relative;
 	.title{
 		background:url('../cimg/why.png') left center no-repeat;
 		background-size:20px;
@@ -192,8 +193,9 @@ body {
   	font-size: 1.6rem;
 		margin-bottom: 5px;
 	}
-	.chou{
-		margin-bottom: 10px;
+	.con{
+		height: 300px;
+		overflow: auto;
 	}
 	.t{
 		font-weight: bold;
@@ -204,6 +206,16 @@ body {
 		line-height: 1.4;
 		font-size: 1.2rem;
 		margin-bottom: 5px;
+	}
+	.close{
+		position: absolute;
+		right: 5px;
+		top: 0;
+		font-size: 16px;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+  	line-height: 40px;
 	}
 }
 .no{
