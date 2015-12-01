@@ -20,9 +20,14 @@ let Api = {
   submitPay: e4s + "/oneyuan.htm?action=saveOrder",
   r30Pay: e4s + "/oneyuan.htm?action=saveR30Order",
   vfan: e4s + "/oneyuan.htm?action=getOrderFans",
-  r30fan: e4s + "/oneyuan.htm?action=getOrderR30Fans" 
+  r30fan: e4s + "/oneyuan.htm?action=getOrderR30Fans",
   /*-----蓝鸟众筹 r30众筹 接口----*/
   
+  /*--------新车鉴赏-----*/
+  joincount_xk:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfocount&carSeriesId=101401&activityId=shuang12huodong",
+  joincount_lan:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfocount&carSeriesId=50001&activityId=shuang12huodong",
+  joincount_lou:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfocount&carSeriesId=353861&activityId=shuang12huodong",
+  awardlist:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfolist&activityId=shuang12huodong"
 }
 
 module.exports = Api;

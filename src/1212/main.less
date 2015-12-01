@@ -1,0 +1,141 @@
+@import "../css/reset";
+
+/*----g_css-----*/
+body{
+  background-color:#f1f1f1 ;
+  font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+}
+.g-warp{
+   width: 100%;
+   font-size: 12px;
+   text-align: center;
+   padding-bottom: 60px;
+  img {
+    width: 100%;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+.hd{
+  position: relative;
+}
+.ft_btn{
+    position: fixed;
+    bottom: 10px;
+    text-align: center;
+    width:100% ;
+    padding: 0 8px;
+    z-index:6 ;
+    font-weight: bold;
+  a{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fedc57;
+    padding: 15px ;
+    font-size: 16px;
+    color: #c60613;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    .icon_gif{
+      display: inline-block;
+      background: url('img/icon_gift.png') no-repeat center center;
+      width:20px;
+      height: 20px;
+      background-size: contain;
+      margin-right: 10px;
+      vertical-align: text-bottom;
+    }
+  }
+
+}
+
+.adv_cnt{
+  padding: 15px 50px;
+  margin: 8px;
+  background-color: #d10815;
+  .ac_tt{
+    padding:0 40px;
+  }
+  img{
+    margin-bottom: 20px;
+  }
+}
+.car{
+  position: relative;
+  font-weight: bold;
+  .count{
+    display: block;
+    margin: 0 auto;
+    width: 220px;
+    position: absolute;
+    padding: 10px;
+    background-color: #fff;
+    opacity: 0.8;
+    bottom: 20px;
+    margin-left: -110px;
+    left: 50%;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 20px;
+    span{
+      color: #c90028;
+    }
+  }
+}
+.action{
+  position: relative;
+  .msg{
+    width: 80%;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 5px;
+    margin-left: -40%;
+    left: 50%;
+    font-size: 14px;
+    color: #fff;
+    line-height: 25px;
+    p{
+      position: relative;
+      text-align: center;
+      .icon_lb{
+        background: url(img/icon_lb.png);
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+}
+.car_nav{
+  position: relative;
+  .car_list{
+    position: absolute;
+    display: block;
+    height: 32px;
+    top: 41%;
+    width: 29%;
+    left: 15px;
+    z-index: 8;
+  }
+  .car_one{
+    left: 4%;
+  }
+  .car_two{
+    left: 34%;
+  }
+  .car_three{
+    left:65%;
+  }
+}
+.car_nav_fix{
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  left: 0;
+  width: 100%;
+}
