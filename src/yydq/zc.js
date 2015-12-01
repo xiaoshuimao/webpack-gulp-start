@@ -236,7 +236,8 @@ $(function () {
 				url: zc_pay,
 				data: form,
 				dataType: 'json',
-				type: 'post'
+				type: 'post',
+				contentType : 'application/x-www-form-urlencoded; charset=gbk'
 			}).done(function (d) {
 				layer.close(submitCover);
 				if (d.error == 0) {
