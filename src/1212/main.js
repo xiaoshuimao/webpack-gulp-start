@@ -60,7 +60,7 @@ $(function(){
           html += '<p><i class="icon_lb"></i>转个身，<span>三年十万公里免保劵</span>礼品就被 <span>'+phone+'</span></p>\
             <p>抽走了，眼红不如行动！</p>';
         }
-        if(itm.carSeriesId=='353861'){
+        if(itm.carSeriesId=='101401'){
           var phone = itm.phone.substring(0,3)+"***"+itm.phone.substring(8,11);
           html += '<p><i class="icon_lb"></i>转个身，<span>50%购置税补贴券</span>礼品就被 <span>'+phone+'</span></p>\
             <p>抽走了，眼红不如行动！</p>';
