@@ -219,7 +219,7 @@ $(function () {
 
 		if (isWx) {
 			doPay({
-				name: name,
+				name: encodeURIComponent(name),
 				phone: phone,
 				code: vcode,
 				idcard: idcard,
