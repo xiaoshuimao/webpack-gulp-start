@@ -236,8 +236,7 @@ $(function () {
 				url: zc_pay,
 				data: form,
 				dataType: 'json',
-				type: 'post',
-				contentType : 'application/x-www-form-urlencoded; charset=gbk'
+				type: 'post'
 			}).done(function (d) {
 				layer.close(submitCover);
 				if (d.error == 0) {
@@ -269,8 +268,7 @@ $(function () {
 				url: clue_api,
 				data: form,
 				type: 'post',
-				dataType: 'json',
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8'
+				dataType: 'json'
 			}).done(function (d) {
 				_smq.push(['custom', '1yuan5-WAP-lead-1', '', form.phone]);
 				if (!isWx) {
