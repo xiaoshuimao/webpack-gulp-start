@@ -4,7 +4,7 @@ import {getQuery, isWx} from 'func';
 import {joincount_xk, joincount_lan, joincount_lou,awardlist} from 'api';
 
 $(function(){
-  //
+  /*
   $.ajax({
     data:{},
     url:joincount_xk,
@@ -17,7 +17,6 @@ $(function(){
   }).fail(function(a,b, c){
     console.log(a+'////'+b+'////'+c);
   });
-  //
   $.ajax({
     data:{},
     url:joincount_xk,
@@ -31,7 +30,6 @@ $(function(){
   }).fail(function(a,b, c){
     console.log(a+'////'+b+'////'+c);
   });
-  //
   $.ajax({
     data:{},
     url:joincount_lan,
@@ -44,7 +42,7 @@ $(function(){
   }).fail(function(a,b, c){
     console.log(a+'////'+b+'////'+c);
   });
-  //
+  */
   $.ajax({
     data:{},
     url:awardlist,
