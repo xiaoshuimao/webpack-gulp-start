@@ -82,10 +82,7 @@ $(function(){
     }
   });
   var smart = getQuery('smartcode');
-  $('.j-get').attr('href',
-    'http://weixin.dongfeng-nissan.com.cn/huodong/index.php?a=DoubleTwelve&m=index&key=' 
-      + isWx ? 'N-Weixin-Wap-V4-Ac-Le-PoC-Msg2-02-20151201-1212' : 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg30-01-20151201-1212'
-      + (smart ? '&smartCode=' + smart : ''));
+  $('.j-get').attr('href','http://weixin.dongfeng-nissan.com.cn/huodong/index.php?a=DoubleTwelve&m=index&key=' + (isWx ? 'N-Weixin-Wap-V4-Ac-Le-PoC-Msg2-02-20151201-1212' : 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg30-01-20151201-1212') + (smart ? '&smartCode=' + smart : ''));
   //微信分享设置
   if (isWx) { require('share')("买全新逍客送半税，购全新楼兰，蓝鸟三年养车不花钱，速来！", CONFIG.CONTEXT_PATH + '/topic/1212/img/ac_01.jpg', 'Nissan 新车大赏', location.href); }
 
