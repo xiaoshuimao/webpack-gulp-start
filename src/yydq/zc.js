@@ -205,14 +205,14 @@ $(function () {
 		})
 
 		doClue({
-			name: name,
+			name: encodeURIComponent(name),
 			phone: phone,
 			storeId: storeId,
 			carSeriesId: car,
 			authKey: 'abc123!!',
 			actionType: 'saveclue',
 			source: source,
-			activityName: '一元夺券',
+			activityName: encodeURIComponent('一元夺券'),
 			clueType: 6,
 			pageId: 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
 		});
