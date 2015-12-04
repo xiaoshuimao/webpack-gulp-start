@@ -1,5 +1,5 @@
 import {getQuery, isWx, formatTime} from 'func';
-!getQuery(openId) && (location.href = 'http://dfldata-dev.dongfeng-nissan.com.cn/weixin/Nissan/www/api.php?a=E4S&m=userOauth&url=' + location.href);
+!getQuery('openId') && (location.href = 'http://dfldata-dev.dongfeng-nissan.com.cn/weixin/Nissan/www/api.php?a=E4S&m=userOauth&url=' + location.href);
 require('./zc.less');
 import $ from 'jq';
 import {city_api, store_api, zc_pay, zc_count, clue_api, vcode_api} from 'api';
