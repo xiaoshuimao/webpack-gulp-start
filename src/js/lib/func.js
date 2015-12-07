@@ -56,7 +56,23 @@ let Func = {
       callback();
     }
     document.body.appendChild(js);
-  }
+  },
+  smq:(function() {
+		window._smq = window._smq || [];
+		window._smq.push(['_setAccount', '2719b1e', new Date()]);
+		window._smq.push(['pageview']);
+		var sm = document.createElement('script');
+    sm.type = 'text/javascript'; sm.async = true;
+		sm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdnmaster.com/sitemaster/collect.js';
+		var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(sm, s);
+    
+		window._hmt = window._hmt || [];
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?98c9fb8d45901b610138343b850460d7";
+		var s2 = document.getElementsByTagName("script")[0];
+		s2.parentNode.insertBefore(hm, s2);
+  })()
 }
 
 
