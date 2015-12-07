@@ -17,8 +17,7 @@ $(function () {
 	}
 	
 	//活动数据
-	//if (isWx) {
-		if (1) {
+	if (isWx) {
 		$.ajax({
 			url: zc_count12,
 			dataType: 'json',
@@ -37,27 +36,26 @@ $(function () {
 		}).fail(function (state, err, c) {
 			msg('no', '初始化页面失败，请刷新页面');
 		});
+	} else {
+		$.ajax({
+			url:'http://121.41.173.5/webservice/limited_buy.php?act=rush_purchase&type=2',
+			dataType:'json',
+			type:'get'
+		}).done(function(d){
+			if(d.error == '0' && d.mess == 'ok'){
+				$.each(d.data, function(i, item){
+					let li = $('[data-car="' + item.series_id + '"]').parents('li');
+					li.find('.j-have').text(item.inventory);
+					li.find('.bar span').css('width', item.inventory * 100 / 299 + '%');
+					li.find('.quan span').text(Math.floor(item.inventory / 299));
+				});
+			}else{
+				msg('no', d.mess);
+			}
+		}).fail(function(){
+			msg('no', '初始化页面失败，请刷新页面');
+		})
 	}
-	// } else {
-	// 	$.ajax({
-	// 		url:'http://121.41.173.5/webservice/limited_buy.php?act=rush_purchase&type=2',
-	// 		dataType:'json',
-	// 		type:'get'
-	// 	}).done(function(d){
-	// 		if(d.error == '0' && d.mess == 'ok'){
-	// 			$.each(d.data, function(i, item){
-	// 				let li = $('[data-car="' + item.series_id + '"]').parents('li');
-	// 				li.find('.j-have').text(item.inventory);
-	// 				li.find('.bar span').css('width', item.inventory * 100 / 299 + '%');
-	// 				li.find('.quan span').text(Math.floor(item.inventory / 299));
-	// 			});
-	// 		}else{
-	// 			msg('no', d.mess);
-	// 		}
-	// 	}).fail(function(){
-	// 		msg('no', '初始化页面失败，请刷新页面');
-	// 	})
-	// }
 	
 	
 	//倒计时
