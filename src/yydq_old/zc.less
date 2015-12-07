@@ -1,16 +1,13 @@
 @import "../css/reset";
 @import "../css/ui";
 @import "../tpl/form";
-@color: #870ac1;
+@color: #37b5e8;
 @c_font: #030012;
 @c_yellow: #fee002;
 @c_red: #c90128;
 @c_form: #c90128;
-@c_time:#f5f634;
-@c_withe:#fff;
 body {
 	background-color: #eee;
-	font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
 }
 .banner {
 	position: relative;
@@ -23,7 +20,7 @@ body {
 	.con {
 		position: absolute;
 		width: 96%;
-		top: 52%;
+		top: 60%;
 		left: 4%;
 		font-size: 1.5rem;
 
@@ -32,7 +29,7 @@ body {
 			line-height: 20px;
 			margin-bottom: 3%;
 			font-weight: bold;
-			color: @c_time;
+
 			.num {
 				display: inline-block;
 				text-align: center;
@@ -43,40 +40,50 @@ body {
 				margin-right: 2px;
 			}
 		}
-		
+		.time {
+			font-size: 1.3rem;
+			margin-bottom: 3%;
+
+			>p {
+				margin-bottom: 1.3%;
+			}
+		}
+		.btn {
+			padding: 7px 22px 7px 15px;
+			border-radius: 15px;
+			background: url(../cimg/arrow_r1.png) 103px center no-repeat @color;
+			background-size: 8px;
+		}
 	}
 }
 .nav {
-	background-color: @color;
+	background-color: @c_yellow;
 	color: @c_font;
-	height: 60px;
+	height: 48px;
 	overflow: hidden;
 	padding: 0 10px;
 
 	a {
-		color: @c_withe;
+		color: @c_font;
+	}
+	.t, .c {
+		float: left;
 	}
 	.t {
-		font-weight: bold;
+		width: 30%;
 		font-size: 1.4rem;
 		line-height: 1.3;
 		padding-top: 8px;
-		color: @c_time;
-		span{
-			color: @c_withe;
-			font-weight: normal;
-		}
 	}
 	.c {
+		width: 70%;
 		font-size: 1.2rem;
 		padding-top: 6px;
-		overflow: hidden;
 
 		li {
-			display: inline-block;
-			width: 16.66%;
-			text-align: center;
-			padding-left: 10px;
+			float: left;
+			width: 33.33%;
+			padding-left: 12px;
 			background: url(../cimg/arrow_r2.png) center left no-repeat;
 			background-size: 8px;
 
@@ -85,17 +92,10 @@ body {
 				line-height: 1.5;
 			}
 		}
-		li:first-child{
-			width: 10%;
-            padding-left: 0;
-            background: none;
-            text-align: left;
-            margin-left: 0;
-		}
 	}
 }
 .floor {
-	margin: 10px 0 10px 0;
+	margin: 10px 0 20px 0;
 	color: #414141;
 	background-color: white;
 	.t {
@@ -109,12 +109,12 @@ body {
 		border-bottom: 1px solid #eee;
 
 		.car {
-			width: 54%;
+			width: 50%;
 			padding: 10px 18px 10px 10px;
 			float: left;
 		}
 		.content {
-			width: 46%;
+			width: 50%;
 			float: left;
 			font-size: 1.5rem;
 			margin-bottom: 15px;
@@ -180,15 +180,22 @@ body {
 }
 
 .rule{
-	background-color: @c_withe;
+	padding:10px 20px 20px;
+	border-radius: 5px;
+	position: relative;
 	.title{
-		padding: 10px;
-		border-bottom: 1px solid #eee;
+		background:url('../cimg/why.png') left center no-repeat;
+		background-size:20px;
+		padding-left: 26px;
+		border-bottom: 1px solid #333;
+		line-height: 36px;
  		font-weight: bold;
-  	    font-size: 1.6rem;
+  	font-size: 1.6rem;
+		margin-bottom: 5px;
 	}
 	.con{
-		padding: 10px;
+		height: 300px;
+		overflow: auto;
 	}
 	.t{
 		font-weight: bold;
@@ -229,25 +236,4 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 99999;
-}
-.totop{
-	position: fixed;
-	width: 45px;
-	height: 45px;
-	background-color: #7f7f7f;
-	opacity: 0.9;
-	right: 10px;
-	bottom: 20px;
-	border-radius: 2px;
-	text-align: center;
-	line-height: 70px;
-	a{
-		display: inline-block;
-		height: 22px;
-		width: 22px;
-		border-left:3px solid @c_withe;
-		border-top:3px solid @c_withe;
-		transform:rotate(-90deg);
-		-webkit-transform:rotate(45deg);
-	}
 }

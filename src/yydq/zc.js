@@ -1,7 +1,7 @@
 require('./zc.less');
 import $ from 'jq';
 import {getQuery, isWx, formatTime} from 'func';
-import {city_api, store_api, zc_pay, zc_count, clue_api, vcode_api} from 'api';
+import {city_api, store_api, zc_pay12, zc_count12, clue_api, vcode_api} from 'api';
 
 
 $(function () {
@@ -17,9 +17,9 @@ $(function () {
 	}
 	
 	//活动数据
-	if (isWx) {
+    if (isWx) {
 		$.ajax({
-			url: zc_count,
+			url: zc_count12,
 			dataType: 'json',
 			type: 'post',
 			data: {},
@@ -29,8 +29,8 @@ $(function () {
 			act.pop();
 			$.each(act, function (idx, item) {
 				$('.j-have').eq(idx).text(item);
-				$('.bar').eq(idx).find('span').css('width', item * 100 / 299 + '%');
-				$('.process').eq(idx).find('.quan span').text(Math.floor(item / 299));
+				$('.bar').eq(idx).find('span').css('width', item * 100 / 399 + '%');
+				$('.process').eq(idx).find('.quan span').text(Math.floor(item / 399));
 			});
 
 		}).fail(function (state, err, c) {
@@ -70,24 +70,6 @@ $(function () {
 		$('.j-s').text(time.s);
 	}, 1000);
 	
-	//活动解读按钮
-	$('.banner .btn').click(function () {
-		_smq.push(['custom', '1yuan5-WAP', 'rule']);
-		let actLayer = layer.open({
-			type: 1,
-			content: require('./rule.html'),
-			style: "width:90%;border-radius:5px;",
-			success: function () {
-				$('html,body').addClass('lock');
-			},
-			end: function () {
-				$('html,body').removeClass('lock');
-			}
-		});
-		$('.rule .close').click(function () {
-			layer.close(actLayer);
-		});
-	});
 	
 	//布码
 	$('.floor .btn').click(function () { type = $(this).data('type'); _smq.push(['custom', '1yuan5-WAP', 'button' + type]); })
@@ -203,7 +185,7 @@ $(function () {
 			type: 2,
 			content: isWx ? '正在为您跳转支付页面，请耐心等候支付页面加载...' : '正在跳转天猫，请在天猫下单抢购...'
 		})
-
+		var pageId = isWx ? 'N-Weixin-Wap-V4-Ac-Le-PoC-Msg6-03-0000' : 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000';
 		doClue({
 			name: encodeURIComponent(name),
 			phone: phone,
@@ -214,7 +196,7 @@ $(function () {
 			source: source,
 			activityName: encodeURIComponent('一元夺券'),
 			clueType: 6,
-			pageId: 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000'
+			pageId: pageId
 		});
 
 		if (isWx) {
@@ -233,7 +215,7 @@ $(function () {
 		//let wxPay = require('pay');
 		function doPay(form) {
 			$.ajax({
-				url: zc_pay,
+				url: zc_pay12,
 				data: form,
 				dataType: 'json',
 				type: 'post'
@@ -280,7 +262,7 @@ $(function () {
 		}
 		}
 		//微信分享设置
-		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.jpg', '一元夺券', location.href.split('openId')[0]); }
+		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.png', '一元夺券', location.href.split('openId')[0]); }
 
 });
 
