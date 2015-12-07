@@ -12,6 +12,8 @@ let Api = {
   /*----一元夺券-----*/
   zc_pay: e4s + '/oneyuan.htm?action=saveAwardOrder',// 支付
   zc_count: e4s + '/oneyuan.htm?action=countAwardOrder',//活动数据
+  zc_pay12: e4s + '/oneyuan.htm?action=saveAwardOrderDoubleTwo',// 双十二支付
+  zc_count12: e4s + '/oneyuan.htm?action=countAwardOrderDoubleTwo',//双十二活动数据
   /*----一元夺券-----*/
   
   /*-----蓝鸟众筹 r30众筹 接口----*/
