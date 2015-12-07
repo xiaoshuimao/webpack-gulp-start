@@ -59,7 +59,7 @@ $(function () {
 	
 	
 	//倒计时
-	let leftSec = new Date('2015/12/15 10:00:00') - new Date();
+	let leftSec = new Date('2015/12/18 10:00:00') - new Date();
 	let time = formatTime(leftSec);
 	setInterval(function () {
 		leftSec -= 1000;

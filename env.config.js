@@ -25,11 +25,11 @@ module.exports =  {
     },
     "TEST":{
         "API":{
-            "CBB":"http://14.23.175.36/cbbweb",
-            "LANYOU":"http://172.26.152.176/lanyou"
+            "E4Swap":"http://172.26.137.114/wap",
+            "E4S":"http://172.26.137.114"
         },
-        "CONTEXT_PATH":"http://127.0.0.1:3000",
-        "ASSERT_PATH":"http://127.0.0.1:3333"
+        "CONTEXT_PATH":"http://172.26.137.114/wap",
+        "ASSERT_PATH":"http://172.26.137.114/wap/topic"
     },
     "PRO":{
         "API":{
