@@ -262,7 +262,7 @@ $(function () {
 		}
 		}
 		//微信分享设置
-		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.png', '一元夺券', location.href.split('openId')[0]); }
+		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/banner.png', '一元夺券', location.href.split('openId')[0]); }
 
 });
 
