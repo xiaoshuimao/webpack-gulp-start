@@ -25,11 +25,11 @@ module.exports =  {
     },
     "TEST":{
         "API":{
-            "E4Swap":"http://172.26.137.114/wap",
-            "E4S":"http://172.26.137.114"
+            "E4Swap":"http://lytest.chebaba.com/wap",
+            "E4S":"http://lytest.chebaba.com"
         },
-        "CONTEXT_PATH":"http://172.26.137.114/wap",
-        "ASSERT_PATH":"http://172.26.137.114/wap/topic"
+        "CONTEXT_PATH":"http://lytest.chebaba.com/wap",
+        "ASSERT_PATH":"http://lytest.chebaba.com/wap/topic"
     },
     "PRO":{
         "API":{

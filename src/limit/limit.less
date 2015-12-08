@@ -1,0 +1,150 @@
+@import "../css/reset";
+@import "../css/ui";
+@color:#f92334;
+@color2:#ffef62;
+@font:#222;
+@font2:#fff;
+body{
+  background-color:@color2;
+  color:@font;
+}
+.red{color:@color}
+.banner{
+	display: block;
+	width: 100%;
+}
+.wrap{
+  padding: 10px 4%;
+}
+.tit{
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  .red{
+    padding-left: 7px;
+  }
+}
+.content{
+  position: relative;
+  &:after{
+    display: block;
+    content: ' ';
+    clear: both;
+  }
+  .l{
+    width: 40%;
+    height: 100%;
+    position: relative;
+    .bg{
+      width: 100%;
+      display: block;
+    }
+    .button{
+      position: absolute;
+      color: @color;
+      background-color:@color2;
+      text-align: center;
+      height: 26px;
+      font-size: 1.2rem;
+      line-height: 24px;
+      font-weight: bold;
+      border-radius: 20px;
+      border-bottom: 3px solid #b09f07;
+      margin: 0 auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 36%;
+      width: 78%;
+      letter-spacing: -1px;
+    }
+    .car_l{
+      width: 100%;
+      position: absolute;
+      bottom:3%;
+      left:-10%;
+    }
+  }
+  .r{
+    position: absolute;
+    right: 0;
+    top:0;
+    width: 60%;
+    height: 100%;
+    float: right;
+    .car1{
+      margin-bottom: 3%;
+    }
+    .car{
+      background-color: #fff;
+      width: 96%;
+      height: 49%;
+      margin-left: 4%;
+      padding: 7px 5px;
+      position: relative;
+      overflow: hidden;
+      img{
+        display: block;
+        width: 100%;
+      }
+      .dk{
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        color:#fff;
+        text-align: center;
+        line-height: 70px;
+        font-size: 1.2rem;
+        transform: scale(.8,.7);
+        top:-20px;
+        left:-10px;
+        background-color: @color;
+      }
+      .info{
+        margin-top: 10px;
+        text-align: right;
+        .name{
+          float: left;
+          color:@font;
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+        .price{
+          color:@color;
+          font-size: 1.6rem;
+          i{
+            font-style: normal;
+            font-size: 1.2rem;
+            color:#666;
+            display: inline-block;
+            transform: scale(.8) translateY(-4px);
+          }  
+        }
+      }
+      .button{
+        margin-top: 5px;
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        background-color: @color;
+        color:@font2;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+
+ @media screen and (min-width: 350px) {
+   .tit{
+     font-size: 1.6rem;
+   }
+  }
+  @media screen and (min-width: 400px) {
+   .tit{
+     font-size: 1.8rem;
+   }
+  }
