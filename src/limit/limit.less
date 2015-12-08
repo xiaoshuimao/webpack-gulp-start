@@ -20,12 +20,11 @@ body{
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  .red{
-    padding-left: 7px;
-  }
+  line-height: 2.4;
 }
 .content{
   position: relative;
+  margin-bottom: 20px;
   &:after{
     display: block;
     content: ' ';
@@ -102,7 +101,7 @@ body{
         background-color: @color;
       }
       .info{
-        margin-top: 10px;
+        margin-top: 7px;
         text-align: right;
         .name{
           float: left;
@@ -123,7 +122,7 @@ body{
         }
       }
       .button{
-        margin-top: 5px;
+        margin-top: 2px;
         width: 100%;
         height: 25px;
         line-height: 25px;
@@ -136,15 +135,129 @@ body{
     }
   }
 }
-
-
+.list{
+  overflow: hidden;
+  .item{
+    width: 48%;
+    float: left;
+    background-color: #fff;
+    padding: 14px 4px 5px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    .name{
+      font-weight: bold;
+      color:@font;
+      text-indent: 4px;
+      font-size: 1.4rem;
+    }
+    .tip{
+       position: absolute;
+        width: 70px;
+        height: 60px;
+        border-radius: 50%;
+        color:#fff;
+        text-align: center;
+        line-height: 70px;
+        font-size: 1.2rem;
+        transform: scale(.8,.7);
+        top:-20px;
+        right:-10px;
+        background-color: @color;
+    }
+    .car{
+      display: block;
+      margin:18px auto;
+    }
+    .price{
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color:@color;
+      span{
+        font-style: normal;
+        font-size: 1.2rem;
+        color:#666;
+        display: inline-block;
+        transform: scale(.8) translateY(-4px);
+      }
+    }
+    .button{
+        margin-top: 12px;
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        background-color: @color;
+        color:@font2;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+  }
+  .item:nth-child(2n+1){
+    margin-right: 2%;
+  }
+  .item.r{
+    padding: 0;
+    background-color: none;
+    img{
+      width: 100%;
+      display: block;
+    }
+  }
+}
+.more{
+  position: relative;
+  img{
+    display: block;
+    width: 100%;
+  }
+  .lk{
+    position: absolute;
+    display: block;
+  }
+  .lk1{
+    left: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+  }
+  .lk2{
+    right: 0;
+    top: 0;
+    width: 60%;
+    height: 50%;
+  }
+  .lk3{
+    right: 0;
+    bottom: 0;
+    width: 60%;
+    height: 50%;
+  }
+}
  @media screen and (min-width: 350px) {
    .tit{
      font-size: 1.6rem;
+   }
+   .content .r .car .button{
+     margin-top: 6px;
+     height: 28px;
+     line-height: 28px;
+   }
+   .content .r .car .info{
+     margin-top: 10px;
    }
   }
   @media screen and (min-width: 400px) {
    .tit{
      font-size: 1.8rem;
+   }
+   .content .r .car .button{
+     margin-top: 6px;
+     height: 30px;
+     line-height: 30px;
+   }
+   .content .r .car .info{
+     margin-top: 10px;
    }
   }
