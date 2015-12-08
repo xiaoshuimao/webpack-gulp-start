@@ -1,8 +1,8 @@
+import {getQuery, isWx, formatTime} from 'func';
+//!getQuery('openId') && (location.href = 'http://dfldata-dev.dongfeng-nissan.com.cn/weixin/Nissan/www/api.php?a=E4S&m=userOauth&url=' + location.href);
 require('./zc.less');
 import $ from 'jq';
-import {getQuery, isWx, formatTime} from 'func';
 import {city_api, store_api, zc_pay12, zc_count12, clue_api, vcode_api} from 'api';
-
 
 $(function () {
 	//引入弹框插件
@@ -59,7 +59,7 @@ $(function () {
 	
 	
 	//倒计时
-	let leftSec = new Date('2015/12/15 10:00:00') - new Date();
+	let leftSec = new Date('2015/12/18 10:00:00') - new Date();
 	let time = formatTime(leftSec);
 	setInterval(function () {
 		leftSec -= 1000;
@@ -262,7 +262,7 @@ $(function () {
 		}
 		}
 		//微信分享设置
-		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/share.png', '一元夺券', location.href.split('openId')[0]); }
+		if (isWx) { require('share')("一元夺券，买车更优惠！", CONFIG.CONTEXT_PATH + '/topic/yydq/img/banner.png', '一元夺券', location.href.split('openId')[0]); }
 
 });
 
