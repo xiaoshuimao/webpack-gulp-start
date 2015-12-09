@@ -8,7 +8,8 @@ let Api = {
   store_api: e4s + '/web/activity/activitySearch.do?actionType=wapdealerbycity',//专营店
   carType_api: e4s + '/oneyuan.htm?action=loadAllCarType',//车型车系
   wxpay_api: CONFIG.API.E4Swap + '/themes/chebaba/WCPay/jsapi2.jsp',//微信支付
-  act_api: CONFIG.API.E4Swap + '/fortress.htm?action=getInfo',
+  act_api: e4s + '/fortress.htm?action=getInfo',
+  act_ckPhone_api:e4s + '/fortress.htm?action=checkPhone',
   /*-----公共接口----*/
     
   /*----一元夺券-----*/
