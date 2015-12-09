@@ -15,7 +15,7 @@
 		<div class="count" id="all-count">190000</div>
 		<div class="list"><span> 李先生 135****0000</span></div>
 	</div>
-	<div class="t t1">
+	<div class="t t1" id="t1">
 		<div class="c"><span class="red"> 星车推荐 特价专区</span></div>
 	</div>
 	<div class="f1 box">
@@ -35,7 +35,7 @@
 		<a href="###" class="btn">进入专区</a>
 		<div class="tip blue">报上名来，即可参加全民抽奖！</div>
 	</div>
-	<div class="t t2">
+	<div class="t t2" id="t2">
 		<div class="c">
 			<span class="red"> 到店有好礼 试驾有惊喜</span>
 			<span class="blue">在线预约，并到店看车或到店试驾，均可领取精美礼品一份，数量有限，马上预约！</span>
@@ -44,19 +44,31 @@
 	<div class="f2 box">
 		<div class="remark blue">*试驾到店礼品图片仅供参考</div>
 		<div class="gifts">
-		<ul>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-			<li><img src="img/gift.png" alt=""><p class="blue">暖心杯</p></li>
-		</ul>
+			<ul>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+				<li><img src="img/gift.png" alt="">
+					<p class="blue">暖心杯</p>
+				</li>
+			</ul>
 		</div>
 		<a href="###" class="btn">进入专区</a>
 		<div class="tip blue">报上名来，即可参加全民抽奖！</div>
 	</div>
-	<div class="t t3">
+	<div class="t t3" id="t3">
 		<div class="c">
 			<span class="red"> 年末清仓团购会</span>
 		</div>
@@ -70,20 +82,51 @@
 			<p>3、订车赠送精美礼包一份。</p>
 			<p>4、购车赠送原厂DA导航。</p>
 			<br/>
-		  <p>参与车型：全系车型</p>
+			<p>参与车型：全系车型</p>
 			<p>活动须知：11月11日-31日订车且12月31日前开具发票的客户方可享受以上优惠，以上优惠不与店内其他优惠一起享受。</p>
 			<p>精美礼包含:</p>
 			<p>原厂普通车身膜、原厂普通前挡膜、原厂脚垫、封釉、封塑、掸子、香水、灭火器</p>
 		</div>
-		<a href="###" class="btn">进入专区</a>
+		<div class="store">
+			<select name="tg_city" id="tg_city">
+				<option value="0">城市</option>
+				<option value="20001">北京</option>
+				<option value="20181">长沙</option>
+				<option value="20260">常州</option>
+				<option value="20391">大连</option>
+				<option value="20302">东莞</option>
+				<option value="20304">佛山</option>
+				<option value="20278">杭州</option>
+				<option value="20309">江门</option>
+				<option value="20283">宁波</option>
+				<option value="20344">南昌</option>
+				<option value="20265">南京</option>
+				<option value="20335">南宁</option>
+				<option value="20266">南通</option>
+				<option value="20267">苏州</option>
+				<option value="20289">温州</option>
+				<option value="20237">威海</option>
+				<option value="20080">太原</option>
+				<option value="20003">天津</option>
+				<option value="20358">厦门</option>
+				<option value="20083">运城</option>
+				<option value="20222">郑州</option>
+				<option value="202222">广州</option>
+			</select>
+			<select name="tg_store" id="tg_store">
+				<option value="0">请选择经销商</option>
+			</select>
+		</div>
+
+		<a href="###" class="btn" id="btn-tuan">报名参团</a>
 		<div class="tip blue">报上名来，即可参加全民抽奖！</div>
 	</div>
 	<ul class="nav box">
 		<li class="bg"></li>
-		<li><a href="#f1" class="blue">特价专区</a></li>
-		<li class="cur"><a href="#f2" class="blue">到店有礼</a></li>
-		<li><a href="#f3" class="blue">清仓团购</a></li>
-		<li><a href="#f4" class="blue">全民抽奖</a></li>
+		<li><a href="#t1" class="blue">特价专区</a></li>
+		<li class="cur"><a href="#t2" class="blue">到店有礼</a></li>
+		<li><a href="#t3" class="blue">清仓团购</a></li>
+		<li><a href="#t4" class="blue">全民抽奖</a></li>
 	</ul>
 	<script src="http://api.map.baidu.com/api?v=2.0&ak=jKXL9B8jyW5YnPBdOGPQXsgE"></script>
 </body>
