@@ -2,11 +2,13 @@ let e4s = CONFIG.API.E4S;
 let Api = {
   /*-----公共接口----*/
   vcode_api: e4s + "/oneyuan.htm?action=getVcode",//验证码
+  vcode_ck_api: e4s + "/oneyuan.htm?action=checkCode",
   clue_api: e4s + '/ajax/leaveInfo/cbbLeaveInfo.do',//留资
   city_api: e4s + "/oneyuan.htm?action=loadAllCity",//城市
   store_api: e4s + '/web/activity/activitySearch.do?actionType=wapdealerbycity',//专营店
   carType_api: e4s + '/oneyuan.htm?action=loadAllCarType',//车型车系
   wxpay_api: CONFIG.API.E4Swap + '/themes/chebaba/WCPay/jsapi2.jsp',//微信支付
+  act_api: CONFIG.API.E4Swap + '/fortress.htm?action=getInfo',
   /*-----公共接口----*/
     
   /*----一元夺券-----*/
