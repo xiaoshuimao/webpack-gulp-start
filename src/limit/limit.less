@@ -22,6 +22,63 @@ body{
   font-weight: bold;
   text-align: center;
   line-height: 2.4;
+  .c1{
+    height:23px;
+    width: 13px;
+    vertical-align: middle;
+    position: relative;
+    top: 5px;
+  }
+  .c1-l{
+    float: left;
+    &:before{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      content: " ";
+      display: block;
+      width: 7px;
+      height: 14px;
+      border-radius:  0 7px 7px 0;
+      background-color: rgba(102, 163, 255, 0.7)
+    }
+    &:after{
+      position: absolute;
+      right: 0;
+      top: 0;
+      content: " ";
+      display: block;
+      width: 12px;
+      height: 23px;
+      border-radius:  12px 0 0 12px;
+      background-color: rgba(249, 35, 52, 0.7);
+    }
+  }
+  .c1-r{
+    float: right;
+    &:before{
+      position: absolute;
+      right: 0;
+      top: 0;
+      content: " ";
+      display: block;
+      width: 7px;
+      height: 14px;
+      border-radius:  7px 0 0 7px;
+      background-color: rgba(188, 9, 227, 0.7);
+    }
+    &:after{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      content: " ";
+      display: block;
+      width: 12px;
+      height: 23px;
+      border-radius:0 12px 12px 0;
+      background-color: rgba(249, 35, 52, 0.7);
+    }
+  }
 }
 .content{
   position: relative;
@@ -135,6 +192,73 @@ body{
       }
     }
   }
+}
+.button{
+  .c2{
+      display: block;
+      width: 39px;
+      height: 25px;
+      position: relative;
+      &:before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        content: " ";
+        width: 8px;
+        height: 8px;
+        border-radius: 0 0 8px 0;
+        background-color: #fbee09;
+      }
+      &:after{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: block;
+        content: " ";
+        width: 16px;
+        height: 17px;
+        border-radius: 0 16px 0 0;
+        background-color: #bafffb;
+      }
+      .c21{
+        display: block;
+        width: 29px;
+        height: 25px;
+        margin-left: 10px;
+        position: relative;
+        &:before{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: block;
+          content: " ";
+          width: 14px;
+          height: 14px;
+          border-radius: 7px;
+          background-color: #feed8f;;
+        }
+        &:after{
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          display: block;
+          content: " ";
+          width: 24px;
+          height: 11px;
+          border-radius: 11px 11px 0 0;
+          background-color: #66a3ff;
+        }
+      }
+    }
+    .c2-l{
+      float: left;
+    }
+    .c2-r{
+      float: right;
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+    }
 }
 .list{
   overflow: hidden;
