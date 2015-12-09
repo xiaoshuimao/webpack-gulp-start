@@ -15,6 +15,7 @@ let msg = (type = '', text, time = 1.5, shadeClose = false) => {
 
 
 $(function () {
+	let formLayer = {};
 	textScroll('act-list');
 	//获取当前城市
 	let city = null;
@@ -24,12 +25,8 @@ $(function () {
 		map.getAddressByPos(p, function (d) {
 			city = d.city || '北京';
 			console.log(city);
-			$('#tg_city option').each(function (i, o) {
-				if (o.text == city) {
-					$('#tg_city').val(o.value);
-					showTgStore(o.value);
-				}
-			})
+			var search = ':contains(' + city + ')';
+			$('#tg_city option').filter(search).attr("selected", true);
 		});
 	})
 	//活动信息
@@ -37,7 +34,7 @@ $(function () {
 		url: act_api,
 		data: {
 			activityId: 2333,
-			topCount:10
+			topCount: 10
 		},
 		type: 'post',
 		dataType: 'json'
@@ -67,7 +64,7 @@ $(function () {
 			msg('no', '请先选择城市和经销商');
 			return;
 		}
-		let tgLayer = layer.open({
+		formLayer = layer.open({
 			type: 1,
 			content: require('form_bld_tg.html'),
 			style: "width:90%;border-radius:6px;",
@@ -89,6 +86,30 @@ $(function () {
 		});
 	});
 	//end 弹出团购表单
+	// 弹出到店有礼表单
+	$('#btn-book').click(function () {
+		formLayer = layer.open({
+			type: 1,
+			content: require('form_bld_book.html'),
+			style: "width:90%;border-radius:6px;",
+			success: function () {
+				$('html,body').addClass('lock');
+				//团购  经销商 ----> 车系
+				// let model = $('#tg_store option').data('model');
+				// let options = car.getModel(model);
+				// $('#tg_carSeries').html(options);
+
+				$('#yes').click(function () {
+					checkForm('book');
+				});
+			},
+			end: function () {
+				$('html,body').removeClass('lock');
+				document.body.scrollTop = $('#t2').offset().top + 100;
+			}
+		});
+	});
+	//end 弹出到店有礼表单
 	//验证表单
 	function checkForm(name) {
 		var carSeriesId = '', storeId = '', pageId = '';
@@ -166,7 +187,7 @@ $(function () {
 		}).done(function (d) {
 			//_smq.push(['custom', '1yuan5-WAP-lead-1', '', form.phone]);
 			msg('yes', '提交成功');
-			layer.close(tgLayer);
+			layer.close(formLayer);
 		}).fail(function (err) {
 			msg('no', '留资失败');
 		})
@@ -215,108 +236,108 @@ $(function () {
 		}
 	});
 	// END 获取验证码
-	var f=0;//历史位置
-	var c=8;//基础圈数
+	var f = 0;//历史位置
+	var c = 8;//基础圈数
 	// var r=360;常量一圈的度数
-	var n=7;//1-8奖项
+	var n = 7;//1-8奖项
 	//逆时针依次为8,1,2,3,4,5,6,7
-	var bonus=45*n;
-	var on_color='#fff';
-	var off_color='#ffd118';
+	var bonus = 45 * n;
+	var on_color = '#fff';
+	var off_color = '#ffd118';
 	// var compensate=360-f;//补偿，不需要
-	$('.go').on('click',function(){
+	$('.go').on('click', function () {
 		$('.ungo').show();
-		var t=c*360+bonus;
-			var str='@keyframes roundOver{'+
-					'from {transform: rotate('+f+'deg);}'+
-					'to {transform: rotate('+t+'deg);}'+
-				'}';
+		var t = c * 360 + bonus;
+		var str = '@keyframes roundOver{' +
+			'from {transform: rotate(' + f + 'deg);}' +
+			'to {transform: rotate(' + t + 'deg);}' +
+			'}';
 		$('#goRound').html(str);
 		$('.roundPad').addClass('gogogo');
-		 f=bonus;
-         // compensate=360-f;
-         //按钮效果
-         $('.btn_up').attr('src', './img/button_down.png');
-         window.setTimeout(function(){
-		 $('.btn_up').attr('src', './img/button_up.png');
-         },150);
-		window.setTimeout(function(){
-         $('.roundPad').removeClass('gogogo');
-         $('.roundPad').get(0).style.transform= 'rotate('+bonus+'deg)';
-         		
-        		bonus=45*n;
-        		window.clearInterval(bl);
-        		lightSwitch (false);
-        		$('.ungo').hide();
-        },8000);
-    var bl=window.setInterval(function(){
-		  blingLight();
-		  // window.setTimeout(arguments.callee,200)
-         },200);
-		
+		f = bonus;
+		// compensate=360-f;
+		//按钮效果
+		$('.btn_up').attr('src', './img/button_down.png');
+		window.setTimeout(function () {
+			$('.btn_up').attr('src', './img/button_up.png');
+		}, 150);
+		window.setTimeout(function () {
+			$('.roundPad').removeClass('gogogo');
+			$('.roundPad').get(0).style.transform = 'rotate(' + bonus + 'deg)';
+
+			bonus = 45 * n;
+			window.clearInterval(bl);
+			lightSwitch(false);
+			$('.ungo').hide();
+		}, 8000);
+    var bl = window.setInterval(function () {
+			blingLight();
+			// window.setTimeout(arguments.callee,200)
+		}, 200);
+
 	});
 	//灯的位置
-	(function(){
-		for(var i=0;i<24;i++){
-			var left=50;
-			var top=0;
-			left=50+50*Math.sin(i*15*Math.PI/180);
-			top=50-50*Math.cos(i*15*Math.PI/180);
-			var light='<li class="light" style="left:'+left+'%;top:'+top+'%;"'+'><i class="u-light"></i></li>';
+	(function () {
+		for (var i = 0; i < 24; i++) {
+			var left = 50;
+			var top = 0;
+			left = 50 + 50 * Math.sin(i * 15 * Math.PI / 180);
+			top = 50 - 50 * Math.cos(i * 15 * Math.PI / 180);
+			var light = '<li class="light" style="left:' + left + '%;top:' + top + '%;"' + '><i class="u-light"></i></li>';
 			$('.lightBox').append(light);
 		}
-		
+
 	})();
 	//灯的亮灭
-	function blingLight(){
-		$('.u-light').each(function(index, el) {
-			if(index%2==0){
+	function blingLight() {
+		$('.u-light').each(function (index, el) {
+			if (index % 2 == 0) {
 				$(el).css({
-					'box-shadow':'0px 0px 10px #888888',
-					'background-color':on_color
+					'box-shadow': '0px 0px 10px #888888',
+					'background-color': on_color
 				});
-				window.setTimeout(function(){
-				$(el).css({
-					'box-shadow':'0px 0px 0px #888888',
-					'background-color':off_color
+				window.setTimeout(function () {
+					$(el).css({
+						'box-shadow': '0px 0px 0px #888888',
+						'background-color': off_color
 					});
-				},150);
-			}else{
+				}, 150);
+			} else {
 				$(el).css({
-					'box-shadow':'0px 0px 0px #888888',
-					'background-color':off_color
+					'box-shadow': '0px 0px 0px #888888',
+					'background-color': off_color
 				});
-				window.setTimeout(function(){
-				$(el).css({
-					'box-shadow':'0px 0px 10px #888888',
-					'background-color':on_color
+				window.setTimeout(function () {
+					$(el).css({
+						'box-shadow': '0px 0px 10px #888888',
+						'background-color': on_color
 					});
-				},150);
+				}, 150);
 
 			}
 		});
-		
+
 	}
 	//全亮或全灭灯
 	//s为bool值
-	function lightSwitch (s) {
-		if(s){
-			$('.u-light').each(function(index, el) {
+	function lightSwitch(s) {
+		if (s) {
+			$('.u-light').each(function (index, el) {
 				$(el).css({
-					'box-shadow':'0px 0px 10px #888888',
-					'background-color':on_color
+					'box-shadow': '0px 0px 10px #888888',
+					'background-color': on_color
 				});
 
 			});
-		}else{
-			$('.u-light').each(function(index, el) {
+		} else {
+			$('.u-light').each(function (index, el) {
 				$(el).css({
-					'box-shadow':'0px 0px 0px #888888',
-					'background-color':off_color
+					'box-shadow': '0px 0px 0px #888888',
+					'background-color': off_color
 				});
 
 			});
 		}
 	}
-	
+
 });
