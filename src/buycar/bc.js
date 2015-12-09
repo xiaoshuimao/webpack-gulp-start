@@ -20,5 +20,24 @@ $(function(){
 	.always(function() {
 		console.log("complete");
 	});
+
+	/*--------初始化当前位置--------*/
+	let cbbMap = require('map');
+    function locationFunc() {
+      var map = new cbbMap();
+      var sf = map.getCurPos(function (d) {
+        map.getAddressByPos(d, function (data) {
+          //console.log(data);
+          lng = d.lng;
+          lat = d.lat;
+          $('.place-msg span').html(data.address);
+          myProvVar = data.province;
+          mycityVar = data.city;
+          var str = myProvVar + " " + mycityVar;
+          $('.search-select__type-sel').text(str);
+          InitProCity();
+        });
+      });
+    }
 	
 });
