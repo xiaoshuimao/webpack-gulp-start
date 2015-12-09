@@ -30,6 +30,12 @@ let Api = {
   joincount_lan:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfocount&carSeriesId=50001&activityId=shuang12huodong",
   joincount_lou:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfocount&carSeriesId=353861&activityId=shuang12huodong",
   awardlist:e4s + "/ajax/leaveInfo/cbbLeaveInfo.do?actionType=accessleaveinfolist&activityId=shuang12huodong"
+
+  /*----堡垒店接口 ------*/
+  bl_picCity:"http://172.26.153.45:8080/cbbweb/Speccar.do?action=findCitiesBySeriesId",
+  bl_store:"http://172.26.153.45:8080/cbbweb/Speccar.do?action=findBySeriesId",
+  bl_gifType:"http://172.26.153.45:8080/cbbweb/Speccar.do?action=findCitiesBySeriesId"
+
 }
 
 module.exports = Api;
