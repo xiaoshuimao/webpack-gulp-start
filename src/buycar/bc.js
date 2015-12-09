@@ -2,6 +2,7 @@ require('./bc.less');
 import {getQuery, isWx, formatTime} from 'func';
 import $ from 'jq';
 import {bl_picCity, bl_store, bl_gifType} from 'api';
+
 $(function(){
 
 	//引入弹框插件
