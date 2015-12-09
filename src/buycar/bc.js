@@ -28,10 +28,13 @@ $(function(){
 		.done(function(data) {
 			if(!$.isEmptyObject(data)){
 				$('.j-img').attr('src', data.picture);
-				if(city){
-
-				}
-
+				var html ='';
+				$.each(data.city,function(index, el) {
+					html += '<option value="">'+itm.city_name+'</option>';
+				});
+				$('#sel1').html(html);
+				var search = ':contains('+city+')';
+				$('#sel1 option').filter(search).attr("selected",true)
 			}
 		})
 		.fail(function() {
@@ -84,4 +87,5 @@ $(function(){
       });
     }
 	locationFunc();
+	//console.log($('#sel1 option').filter(':contains("汕头")').attr("selected",true));
 });
