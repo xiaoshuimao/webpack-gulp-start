@@ -1,6 +1,7 @@
 
 let cbbMap = function() {
   this.getAddressByPos = function(pos, callback) {
+    if(typeof BMap == 'undefined') return;
     var geoc = new BMap.Geocoder();
     geoc.getLocation(pos, function(rs) {
       var addComp = rs.addressComponents;
@@ -19,6 +20,7 @@ let cbbMap = function() {
     });
   }
   this.getCurPos = function(callback) {
+    if(typeof BMap == 'undefined') return;
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r) {
       if (this.getStatus() == BMAP_STATUS_SUCCESS) {
@@ -33,6 +35,7 @@ let cbbMap = function() {
     });
   }
   this.drawMap = function(dom, start, end) {
+    if(typeof BMap == 'undefined') return;
     var center = {
       lng: (start.lng + start.lat) / 2,
       lat: (end.lng + end.lat) / 2
