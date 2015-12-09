@@ -50,8 +50,8 @@ $(function () {
 				$.each(d.data, function(i, item){
 					let li = $('[data-car="' + item.series_id + '"]').parents('li');
 					li.find('.j-have').text(item.inventory);
-					li.find('.bar span').css('width', item.inventory * 100 / 299 + '%');
-					li.find('.quan span').text(Math.floor(item.inventory / 299));
+					li.find('.bar span').css('width', item.inventory * 100 / 399 + '%');
+					li.find('.quan span').text(Math.floor(item.inventory / 399));
 				});
 			}else{
 				msg('no', d.mess);
@@ -76,7 +76,7 @@ $(function () {
 	
 	
 	//布码
-	$('.floor .btn').click(function () { type = $(this).data('type'); _smq.push(['custom', '1yuan5-WAP', 'button' + type]); })
+	$('.floor .btn').click(function () { type = $(this).data('type'); _smq.push(['custom', '1512-emption2-WAP', 'button' + type]); })
 
 		//一元夺券按钮 微信端
 		var type = 1, car = '', href = '';
@@ -259,7 +259,7 @@ $(function () {
 				type: 'post',
 				dataType: 'json'
 			}).done(function (d) {
-				_smq.push(['custom', '1yuan5-WAP-lead-1', '', form.phone]);
+				_smq.push(['custom', '1512-emption2-WAP-lead-1', '', form.phone]);
 				if (!isWx) {
 					location.href = href;
 				}
