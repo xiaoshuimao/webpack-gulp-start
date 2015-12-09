@@ -1,3 +1,4 @@
+import $ from 'jq';
 let Func = {
   // 截取url参数
   getQuery: (name) => {
@@ -47,7 +48,7 @@ let Func = {
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
     }
   },
-  addjs:  (url, callback, async = true) => {
+  addjs: (url, callback, async = true) => {
     let js = document.createElement('script');
     js.type = 'text/javascript';
     js.async = async;
@@ -57,22 +58,47 @@ let Func = {
     }
     document.body.appendChild(js);
   },
-  smq:(function() {
-		window._smq = window._smq || [];
-		window._smq.push(['_setAccount', '2719b1e', new Date()]);
-		window._smq.push(['pageview']);
-		var sm = document.createElement('script');
+  smq: (function () {
+    window._smq = window._smq || [];
+    window._smq.push(['_setAccount', '2719b1e', new Date()]);
+    window._smq.push(['pageview']);
+    var sm = document.createElement('script');
     sm.type = 'text/javascript'; sm.async = true;
-		sm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdnmaster.com/sitemaster/collect.js';
-		var s = document.getElementsByTagName('script')[0];
+    sm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdnmaster.com/sitemaster/collect.js';
+    var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(sm, s);
-    
-		window._hmt = window._hmt || [];
-		var hm = document.createElement("script");
-		hm.src = "//hm.baidu.com/hm.js?98c9fb8d45901b610138343b850460d7";
-		var s2 = document.getElementsByTagName("script")[0];
-		s2.parentNode.insertBefore(hm, s2);
-  })()
+
+    window._hmt = window._hmt || [];
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?98c9fb8d45901b610138343b850460d7";
+    var s2 = document.getElementsByTagName("script")[0];
+    s2.parentNode.insertBefore(hm, s2);
+  })(),
+  textScroll: function (id) {
+   var speed=20,flag=null,tt,that=$('#'+id),child=that.children();
+    var p_w=that.width(), w=child.width();
+    child.css({left:p_w});
+    var t=(w+p_w)/speed * 1000;
+    function play(m){
+        var tm= m==undefined ? t : m;
+        child.animate({left:-w},tm,"linear",function(){             
+            $(this).css("left",p_w);
+            play();
+        });                 
+    }
+    child.on({
+        mouseenter:function(){
+            var l=$(this).position().left;
+            $(this).stop();
+            tt=(-(-w-l)/speed)*1000;
+        },
+        mouseleave:function(){
+            play(tt);
+            tt=undefined;
+        }
+    });
+    play();
+  }
 }
 
 

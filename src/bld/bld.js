@@ -1,8 +1,8 @@
 require('./bld.less');
 import $ from 'jq';
-import {smq, isWx} from 'func';
+import {smq, isWx, textScroll} from 'func';
 import car from './car';
-import {clue_api, vcode_api, vcode_ck_api, act_api} from 'api';
+import {clue_api, vcode_api, vcode_ck_api, act_api, act_ckPhone_api} from 'api';
 let layer = require('layer');
 //用 layer 搞一个消息提示
 let msg = (type = '', text, time = 1.5, shadeClose = false) => {
@@ -15,6 +15,7 @@ let msg = (type = '', text, time = 1.5, shadeClose = false) => {
 
 
 $(function () {
+	textScroll('act-list');
 	//获取当前城市
 	let city = null;
 	let cbbMap = require('map');
@@ -35,7 +36,8 @@ $(function () {
 	$.ajax({
 		url: act_api,
 		data: {
-			activityId: 2333
+			activityId: 2333,
+			topCount:10
 		},
 		type: 'post',
 		dataType: 'json'
@@ -43,7 +45,7 @@ $(function () {
 		let count = d.count;
 		$('#all-count').text(count);
 		$.each(d.data, function (i, o) {
-			$('#act-list').append('<span>' + o.name + ' ' + o.phone + '</span>')
+			$('#act-list .wrap').append('<span>' + o.name + ' ' + o.phone + '</span>')
 		});
 		}).fail(function (err) {
 		msg('no', '不能获取活动参与人数');
