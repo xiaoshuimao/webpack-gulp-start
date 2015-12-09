@@ -5,6 +5,8 @@ import $ from 'jq';
 import {city_api, store_api, zc_pay12, zc_count12, clue_api, vcode_api} from 'api';
 
 $(function () {
+	//留资变量
+	let flag  = true
 	//引入弹框插件
 	let layer = require('layer');
 	//用 layer 搞一个消息提示
@@ -186,18 +188,21 @@ $(function () {
 			content: isWx ? '正在为您跳转支付页面，请耐心等候支付页面加载...' : '正在跳转天猫，请在天猫下单抢购...'
 		})
 		var pageId = isWx ? 'N-Weixin-Wap-V4-Ac-Le-PoC-Msg6-03-0000' : 'N-Chebaba-Wap-V4-Ac-Le-PoC-Msg6-01-0000';
-		doClue({
-			name: encodeURIComponent(name),
-			phone: phone,
-			storeId: storeId,
-			carSeriesId: car,
-			authKey: 'abc123!!',
-			actionType: 'saveclue',
-			source: source,
-			activityName: encodeURIComponent('一元夺券'),
-			clueType: 6,
-			pageId: pageId
-		});
+		if(flag){
+			flag = false;
+			doClue({
+				name: encodeURIComponent(name),
+				phone: phone,
+				storeId: storeId,
+				carSeriesId: car,
+				authKey: 'abc123!!',
+				actionType: 'saveclue',
+				source: source,
+				activityName: encodeURIComponent('一元夺券'),
+				clueType: 6,
+				pageId: pageId
+			});
+		}
 
 		if (isWx) {
 			doPay({
