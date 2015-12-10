@@ -1,5 +1,5 @@
 
-  let car = {
+  var car = {
     //返回为下拉表的数据
     "getModel": function(options) {
       var results;

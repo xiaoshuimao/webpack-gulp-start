@@ -24,8 +24,8 @@ $(function () {
 	map.getCurPos(function (p) {
 		map.getAddressByPos(p, function (d) {
 			city = d.city || '北京';
-			console.log(city);
 			var search = ':contains(' + city + ')';
+			console.log(search)
 			$('#tg_city option').filter(search).attr("selected", true);
 		});
 	})
@@ -94,11 +94,25 @@ $(function () {
 			style: "width:90%;border-radius:6px;",
 			success: function () {
 				$('html,body').addClass('lock');
+				if (city) {
+					var search = ':contains(' + city + ')';
+					$('#book_city option').filter(search).attr("selected", true);
+				}
 				//团购  经销商 ----> 车系
 				// let model = $('#tg_store option').data('model');
 				// let options = car.getModel(model);
 				// $('#tg_carSeries').html(options);
-
+				$('#book_city').change(function () {
+					let cityid = $(this).val();
+					showBookStore(cityid);
+				});
+				function showBookStore(cityid) {
+					let store = car.getDealer(cityid);
+					$('#book_store option').text(store.name).val(store.id).data('model', store.carmodel);
+				}
+				let model = $('#book_store option').data('model');
+				let options = car.getModel(model);
+				$('#book_carSeries').html(options);
 				$('#yes').click(function () {
 					checkForm('book');
 				});
@@ -109,7 +123,9 @@ $(function () {
 			}
 		});
 	});
+	
 	//end 弹出到店有礼表单
+	
 	//验证表单
 	function checkForm(name) {
 		var carSeriesId = '', storeId = '', pageId = '';
