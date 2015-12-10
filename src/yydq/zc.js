@@ -3,7 +3,9 @@ import {getQuery, isWx, formatTime} from 'func';
 require('./zc.less');
 import $ from 'jq';
 import {city_api, store_api, zc_pay12, zc_count12, clue_api, vcode_api} from 'api';
-
+if(isWx){
+	window.location.href='http://weixin.dongfeng-nissan.com.cn/huodong/index.php?a=OneYuan&m=index';
+}
 $(function () {
 
 	//留资变量
@@ -21,7 +23,6 @@ $(function () {
 	
 	//活动数据
     if (isWx) {
-    	window.location.href='http://weixin.dongfeng-nissan.com.cn/huodong/index.php?a=OneYuan&m=index';
 		$.ajax({
 			url: zc_count12,
 			dataType: 'json',
