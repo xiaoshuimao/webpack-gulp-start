@@ -252,16 +252,38 @@ $(function () {
 		}
 	});
 	// END 获取验证码
-	var f = 0;//历史位置
-	var c = 8;//基础圈数
-	// var r=360;常量一圈的度数
-	var n = 7;//1-8奖项
-	//逆时针依次为8,1,2,3,4,5,6,7
-	var bonus = 45 * n;
-	var on_color = '#fff';
-	var off_color = '#ffd118';
-	// var compensate=360-f;//补偿，不需要
-	$('.go').on('click', function () {
+	//当屏幕宽度改变时，获取.bitRound宽度，并设置其高为相同
+	function changeScreen () {
+		var h=$('.bigRound').width();
+		$('.bigRound').height(h);
+		h=$('.roundBorder').width();
+		$('.roundBorder').height(h);
+		$('.roundBorder').css({
+			'border-radius': h
+		});
+		var w=$('.btn_up').width();
+		var wt=$('.btn_text').width();
+		var com=65/168;
+		var sc=com*w/wt;
+		var xc=(-1*w/2-wt/2);
+		$('.btn_text').get(0).style.transform= 'translateX('+xc+'px)'+' '+'scale('+com*w/wt+','+com*w/wt+')';
+	}
+	changeScreen ();//声明后执行
+	$(window).resize(function () {
+		changeScreen ();
+       	});
+	// var inte={
+
+	// };
+	var f=0;//历史位置
+	var on_color='#fff';//灯亮的颜色
+	var off_color='#ffd118';//灯灭的颜色
+	$('.go').on('click',function(){
+		var c=8;//基础圈数
+		// var r=360;常量一圈的度数
+		var n=7;//1-8奖项
+		//逆时针依次为8,1,2,3,4,5,6,7
+		var bonus=45*n;
 		$('.ungo').show();
 		var t = c * 360 + bonus;
 		var str = '@keyframes roundOver{' +
@@ -270,27 +292,24 @@ $(function () {
 			'}';
 		$('#goRound').html(str);
 		$('.roundPad').addClass('gogogo');
-		f = bonus;
-		// compensate=360-f;
-		//按钮效果
-		$('.btn_up').attr('src', './img/button_down.png');
-		window.setTimeout(function () {
-			$('.btn_up').attr('src', './img/button_up.png');
-		}, 150);
-		window.setTimeout(function () {
-			$('.roundPad').removeClass('gogogo');
-			$('.roundPad').get(0).style.transform = 'rotate(' + bonus + 'deg)';
-
-			bonus = 45 * n;
-			window.clearInterval(bl);
-			lightSwitch(false);
-			$('.ungo').hide();
-		}, 8000);
-    var bl = window.setInterval(function () {
-			blingLight();
-			// window.setTimeout(arguments.callee,200)
-		}, 200);
-
+		 f=bonus;
+         //按钮效果
+         $('.btn_up').attr('src', '');
+         window.setTimeout(function(){
+		 $('.btn_up').attr('src', './img/button_up.png');
+         },150);
+		window.setTimeout(function(){
+         $('.roundPad').removeClass('gogogo');
+         $('.roundPad').get(0).style.transform= 'rotate('+bonus+'deg)';
+         		
+        		bonus=45*n;
+        		window.clearInterval(bl);
+        		lightSwitch (false);
+        		$('.ungo').hide();
+        },8000);
+    var bl=window.setInterval(function(){
+		  blingLight();
+         },200);
 	});
 	//灯的位置
 	(function () {
@@ -335,10 +354,10 @@ $(function () {
 
 	}
 	//全亮或全灭灯
-	//s为bool值
-	function lightSwitch(s) {
-		if (s) {
-			$('.u-light').each(function (index, el) {
+	//s为bool值 s为true全亮 false全灭
+	function lightSwitch (s) {
+		if(s){
+			$('.u-light').each(function(index, el) {
 				$(el).css({
 					'box-shadow': '0px 0px 10px #888888',
 					'background-color': on_color
